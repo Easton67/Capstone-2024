@@ -1,0 +1,116 @@
+﻿@model MvcPresentation.Models.DashboardVM
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+@{
+    ViewBag.PageType = "NoHero";
+}
+
+<div class="container" style="padding-top: 5em;">
+    <div class="row d-flex justify-content-between mb-4">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-info">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text pt-3 fw-bold">@Model.UserCount</p>
+                    @Html.ActionLink("View all Users", "Index", "Admin", new { area = "" }, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-info">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Inventory Count</h5>
+                    <p class="card-text pt-3 fw-bold">@Model.InventoryCount</p>
+                    @Html.ActionLink("View Inventory", "Index", "Maintenance", new { area = "" }, new { @class = "btn btn-info" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card border-info">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Total Vendors</h5>
+                    <p class="card-text pt-3 fw-bold">@Model.VenderCount</p>
+                    <!-- Since there's no vendor view, do nothing -->
+                    <a href="#" class="btn btn-info">View all Vendors</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-between">
+        <div class="col-lg-8" style="height: 450px;">
+            <div class="card mb-4 h-100 border-info">
+                <div class="card-body text-center">
+                    <div class="d-flex flex-row justify-content-around">
+                        <div class="w-25 flex-grow-1">
+                        </div>
+                        <div class="flex-grow-1">
+                            <h3 class=" card-title text-center text-nowrap">Donation Analytics</h3>
+                        </div>
+                        <div class="w-25 flex-grow-1">
+                            @Html.ActionLink("View Donations", "Index", "Donations", new { area = "Admin" }, new { @class = "btn btn-info float-end" })
+
+                        </div>
+                    </div>
+                    <p class="fs-5">
+                        Total Donations:
+                        <span class="fw-bold" style="color: limegreen;">@Model.DonationAmount</span>
+                        | Donation Count:
+                        <span class="fw-bold" style="color: #0dcaf0;">@Model.DonationCount</span>
+                    </p>
+                    <div class="card chart-container" style="height: 80%;">
+                        <canvas id="chart" style="height: 100%; border: none"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4" style="height: 450px;">
+            <div class="card h-100 border-info">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Company Owner Contact</h5>
+                </div>
+                <div class="card mx-5 rounded-4" style="height: 150px; border: 2px solid #0dcaf0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bolder">CEO</h5>
+                        <p class="card-text fw-bold">
+                            Email: @Model.CEO.UserID <br>
+                            Phone Number: @Model.CEO.PhoneNumber <br>
+                            Roles: @Model.CEO.RoleDisplay.Split(',')[0]...
+                        </p>
+                    </div>
+                </div>
+                <div class="card m-5 rounded-4" style="height: 150px; border: 2px solid #0dcaf0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bolder">Security</h5>
+                        <p class="card-text fw-bold">
+                            Email: @Model.Security.UserID <br>
+                            Phone Number: @Model.Security.PhoneNumber <br>
+                            Roles: @Model.Security.RoleDisplay.Split(',')[0]...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-bottom: 14vh;" />
+
+<script>
+    const chart = document.getElementById("chart").getContext('2d');
+    const chartData = @Html.Raw(Json.Encode(Model.ChartData));
+
+    new Chart(chart, {
+        type: 'line',
+        data: {
+            labels: chartData.Labels,
+            datasets: chartData.Datasets.map(ds => {
+                return {
+                    label: ds.Label,
+                    backgroundColor: ds.BGColor,
+                    borderColor: ds.BRColor,
+                    data: ds.Data
+                };
+            })
+        },
+    });
+</script>
+

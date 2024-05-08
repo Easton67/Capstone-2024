@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MvcPresentation.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "All Users";
+}
+<div>
+    @*<div class="mt-5">
+        <button class="my-4 btn-grey br-30 p-3 grow" onclick="window.location.href='@Url.Action("Create", "Account")'">
+            Create employee
+        </button>
+        <button class="my-4 btn-grey br-30 p-3 grow" onclick="window.location.href='@Url.Action("Create", "Account")'">
+            Create volunteer
+        </button>
+        <button class="my-4 btn-grey br-30 p-3 grow" onclick="window.location.href='@Url.Action("Create", "Account")'">
+            Create client
+        </button>
+    </div>*@
+    <input id="searchBox" class="my-3 fs-5 p-2 px-3" type="text" onkeyup="myFunction()" placeholder="Search for email...">
+    <img onclick="searchForUser()" class="icon px-3" src="~/Images/search.svg" />
+    <table class="table bg-dark text-light mt-5">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email/UserName
+            </th>
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="background: #CFCECD!important" class="text-dark">
+                <td class="text-nowrap">
+                    @Html.DisplayFor(modelItem => item.FamilyName) @Html.DisplayFor(modelItem => item.GivenName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id })*@ 
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<script>
+        function searchForUser() {
+            var user = document.getElementById("searchBox").value.trim().toLowerCase();
+            var indexURL = '@Url.Action("Index", "Admin")' + '?searchText=' + encodeURIComponent(user);
+            window.location.href = indexURL;
+        };
+</script>
+

@@ -1,0 +1,50 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the delete actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: initial creation
+*@
+@model DataObjects.Event
+
+@{
+    ViewBag.Title = "Delete";
+    ViewBag.Hero = "Are you sure you want to remove this event?";
+}
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <h1>
+                @Html.DisplayFor(model => model.EventName)
+            </h1>
+        </dt>
+
+        <dt>
+            <h4>
+
+                @Html.DisplayFor(model => model.Description)
+            </h4>
+        </dt>
+
+        <dt>
+            <h4>
+                @Html.DisplayFor(model => model.VolunteersNeeded) @Html.DisplayNameFor(model => model.VolunteersNeeded)
+            </h4>
+        </dt>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button class="btn btn-default bg-dark text-white">
+                <a class="text-decoration-none text-white" onclick="window.location.href='@Url.Action("Index", "Event")'">
+                    Back to Events
+                </a>
+            </button>
+            <input type="submit" value="Delete" class="btn btn-default bg-danger text-white" />
+        </div>
+    }
+</div>

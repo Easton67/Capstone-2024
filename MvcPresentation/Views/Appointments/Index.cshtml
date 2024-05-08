@@ -1,0 +1,185 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/10/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/10/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/12/2024
+    What Was Changed: added viewbag hero, and formatted data
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+    Last Updated By: Liam Easton
+    Last Updated: 4/24/2024
+    What Was Changed: Changed page to look like others and added delete modal
+*@
+@using System.Linq;
+@model IEnumerable<DataObjects.Appointment>
+
+@{
+    ViewBag.Title = "Index";
+    if (User.IsInRole("Admin"))
+    {
+        ViewBag.Hero = "All Appointments";
+    }
+    else
+    {
+        ViewBag.Hero = "Your Appointments";
+    }
+}
+
+@*delete modal*@
+<div class="modal text-light" id="delete-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="text-white modal-title delete-message" id="modal-title"></h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Delete", "Appointments", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="delete-appointment-id" name="id" value="" />
+
+                    <div class="form-actions">
+                        <input id="confirm-delete-button" type="submit" value="Delete" class="btn btn-danger" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Reschedule modal*@
+<div class="modal text-light" id="reschedule-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="text-white modal-title reschedule-message" id="modal-title"></h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Reschedule", "Appointments", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="reschedule-appointment-id" name="id" value="" />
+
+                    <div class="form-actions">
+                        <input id="confirm-delete-button" type="submit" value="Reschedule" class="btn btn-secondary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn-generic" href="@Url.Action("Create", "Appointments")">
+    Create Appointment
+</a>
+
+@if (Model.Count() > 0)
+{
+    <table class="table mt-4">
+        <tr>
+            <th>
+                Email
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._locationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._appointmentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._appointmentStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._appointmentEndTime)
+            </th>
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item._clientID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item._locationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item._appointmentType)
+                </td>
+                <td>
+                    @item._appointmentStartTime.ToString("MM/dd/yyyy hh:mm tt")
+                </td>
+                <td>
+                    @item._appointmentEndTime.ToString("MM/dd/yyyy hh:mm tt")
+                </td>
+                <td>
+                    <a class="text-decoration-none text-dark" href="@Url.Action("Details", "Appointments", new { id = item._appointmentID })">
+                        Details
+                    </a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a>
+                            <button class="delete-button fw-bold text-danger bg-transparent border-0"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#delete-modal"
+                                    data-appointment-id="@item._appointmentID"
+                                    data-appointment-name="@item._appointmentType">
+                                Delete
+                            </button>
+                        </a>
+                        <a>
+                            <button class="reschedule-button fw-bold bg-transparent border-0"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#reschedule-modal"
+                                    data-appointment-id="@item._appointmentID"
+                                    data-appointment-name="@item._appointmentType">
+                                Reschedule
+                            </button>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h1 class="mt-4">No Appointments.</h1>
+}
+
+
+<script>
+    var deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var deleteMessage = document.querySelector('.delete-message');
+            var appointmentName = button.getAttribute('data-appointment-name');
+            var appointmentID = document.getElementById('delete-appointment-id');
+            appointmentID.value = button.getAttribute('data-appointment-id');
+            deleteMessage.textContent = "Are you sure you want to delete your " + appointmentName.toLowerCase() + "?";
+        });
+    });
+</script>
+
+<script>
+    var deleteButtons = document.querySelectorAll('.reschedule-button');
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var deleteMessage = document.querySelector('.reschedule-message');
+            var appointmentName = button.getAttribute('data-appointment-name');
+            var appointmentID = document.getElementById('reschedule-appointment-id');
+            appointmentID.value = button.getAttribute('data-appointment-id');
+            deleteMessage.textContent = "Are you sure you want to reschedule your " + appointmentName.toLowerCase() + "?";
+        });
+    });
+</script>

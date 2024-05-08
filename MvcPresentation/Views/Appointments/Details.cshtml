@@ -1,0 +1,71 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the details actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/25/2024
+    What Was Changed: Changing ui to how other pages look
+*@
+@model DataObjects.Appointment
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Title = "Appointment Details";
+}
+
+<div class="default-container">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Client:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._clientID)
+            </dd>
+
+            <dt>
+                Location:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._locationName)
+            </dd>
+
+            <dt>
+                Type:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._appointmentType)
+            </dd>
+
+            <dt>
+                Start Time:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._appointmentStartTime)
+            </dd>
+
+            <dt>
+                End Time:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._appointmentEndTime)
+            </dd>
+        </dl>
+    </div>    
+    <div>
+        <button class="my-4 btn-grey br-30 p-3 grow">
+            <a class="text-decoration-none text-dark" onclick="window.location.href='@Url.Action("Index", "Appointments")'">
+                All Appointments
+            </a>
+        </button>
+    </div>
+    
+</div>

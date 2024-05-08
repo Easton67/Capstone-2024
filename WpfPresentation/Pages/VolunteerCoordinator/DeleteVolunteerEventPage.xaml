@@ -1,0 +1,37 @@
+﻿<!--
+    <Summary>
+    Creator: Darryl Shirley
+    created: 02/27/2024
+    Summary: DeleteVolunteerEventPage.xaml
+    Last updated By: Darryl Shirley
+    Last Updated: 02-27-2024
+    What was changed/updated: Initial Creation
+    Last Updated By: Matthew Baccam
+    Last Updated: 04/05/2024
+    What Was Changed: Added the main styling to this page
+    </Summary>
+-->
+<Window x:Class="WpfPresentation.Pages.VolunteerCoordinator.DeleteVolunteerEventPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation.Pages.VolunteerCoordinator"
+        mc:Ignorable="d"
+        Title="Delete Volunteer Event" Height="150" Width="300" Background="LightGray" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lbldeleteQuestion" Grid.Row="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold">
+            Are you sure you want to delete:
+        </Label>
+        <Button x:Name="btnCancel" Grid.Row="1" Grid.Column="0" Style="{StaticResource btnSmall}" Click="btnCancel_Click">Cancel</Button>
+        <Button x:Name="btnSubmit" Grid.Row="1" Grid.Column="1" Style="{StaticResource btnSmall}" Click="btnSubmit_Click">Submit</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,51 @@
+﻿<Page x:Class="WpfPresentation.Pages.User.pgClientPriority"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.User"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="900"
+      Title="ClientPriority">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Style="{StaticResource lblHeader}">Priority Registration</Label>
+        
+        <Label Style="{StaticResource lblSubHeader}" Grid.Column="0" Grid.Row="1">Please select your housing situation: </Label>
+        <ComboBox x:Name="cb_residenceSelection" Grid.Row="2" Grid.Column="0" Margin="200 10 200 10" VerticalContentAlignment="Center" SelectedIndex="0" SelectionChanged="cb_residenceSelection_SelectionChanged">
+            <ComboBoxItem>No nighttime residence.</ComboBoxItem>
+            <ComboBoxItem>In danger of losing nighttime residence within 14 days.</ComboBoxItem>
+            <ComboBoxItem>Unstable housing, two or more moves within the last 60 days.</ComboBoxItem>
+            <ComboBoxItem>Other</ComboBoxItem>
+        </ComboBox>
+
+        <StackPanel x:Name="stckPnl_otherResidenceExplanation" Grid.Column="0" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
+            <Label Style="{StaticResource lblSubHeader}" Margin="0 0 10 0">Please explain: </Label>
+            <TextBox x:Name="tb_otherResidenceExplanation" Style="{StaticResource txtRegular}"></TextBox>
+        </StackPanel>
+
+        <Label Style="{StaticResource lblSubHeader}" Grid.Column="0" Grid.Row="4">Have you ever been convicted of a crime?</Label>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <RadioButton x:Name="rbConvicted_Yes" GroupName="rbConvicted" Checked="rbConvicted_Checked" Padding="0 0 10 0">Yes</RadioButton>
+            <RadioButton x:Name="rbConvicted_No" GroupName="rbConvicted" Checked="rbConvicted_Checked" Padding="0 0 10 0" IsChecked="True">No</RadioButton>
+        </StackPanel>
+
+        <StackPanel x:Name="stckPnl_crimeExplanation" Grid.Column="0" Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
+            <Label Style="{StaticResource lblSubHeader}" Margin="0 0 10 0">Please explain:</Label>
+            <TextBox x:Name="tb_crimeExplanation" Style="{StaticResource txtRegular}"></TextBox>
+        </StackPanel>
+
+        <Button Style="{StaticResource btnRegular}" x:Name="btn_submitClientPriority" Grid.Row="7" Grid.Column="0" Content="Submit" Click="btn_submitClientPriority_Click" />
+
+    </Grid>
+</Page>

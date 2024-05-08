@@ -1,0 +1,102 @@
+﻿@*
+    Creator: Liam Easton
+    Created: ???
+    Summary: Creation of the TransportationOrderVM index page
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+*@
+@model IEnumerable<DataObjects.TransportationOrderVM>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "Transporatation Orders";
+}
+
+
+<div class="d-flex pr-5 pt-3 table-header-filter">
+    <div>
+        <button class="btn-grey br-30 fs-5 p-2 px-3 grow" href="@Url.Action("Create", "Transporation")">
+            Create Order
+        </button>
+    </div>
+    <input id="searchBox" class="fs-5 p-2 px-3 mx-3" type="text" onkeyup="myFunction()" placeholder="Search for item...">
+    <img onclick="searchForItem()" class="icon px-3 search-icon" src="~/Images/search.svg" />
+</div>
+<table class="table my-4">
+    <tr class="bg-dark text-white">
+        <th>
+            @Html.DisplayNameFor(model => model.DayPosted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LineItemAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransportItem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DayToPickUp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fulfilled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="background: #CFCECD!important" class="text-dark">
+            <td>
+                @item.DayPosted.ToShortDateString()
+            </td>
+            <td>
+                @item.LineItemAmount.ToString("c")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransportItem)
+            </td>
+            <td>
+                @item.DayToPickUp.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fulfilled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vendor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {        
+                    <a class="text-decoration-none text-dark" href="@Url.Action("Edit", "Transporation", new {  id = item.TransportItemID })">
+                        Edit
+                    </a>
+                    <a class="text-decoration-none text-dark" href="@Url.Action("Delete", "Transporation", new {  id = item.TransportItemID })">
+                        Delete
+                    </a>
+                }
+                <a class="text-decoration-none text-dark" href="@Url.Action("Details", "Transporation", new {  id = item.TransportItemID })">
+                    Details
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+        function searchForItem() {
+            var item = document.getElementById("searchBox").value.trim().toLowerCase();
+            var indexURL = '@Url.Action("Index", "Transportation")' + '?searchText=' + encodeURIComponent(item);
+            window.location.href = indexURL;
+        };
+</script>

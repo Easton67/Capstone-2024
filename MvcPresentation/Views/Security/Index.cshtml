@@ -1,0 +1,137 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/10/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/10/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 34/12/2024
+    What Was Changed: Added viewbag hero
+*@
+
+@model IEnumerable<DataObjects.Incident>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "Incidents";
+}
+
+@*delete modal*@
+<div class="modal text-light" id="delete-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="text-white modal-title delete-message" id="modal-title"></h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Delete", "Security", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="delete-incident-id" name="id" value="" />
+
+                    <div class="form-actions">
+                        <input id="confirm-delete-button" type="submit" value="Delete" class="btn btn-danger" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<button class="btn-generic" onclick="window.location.href='@Url.Action("Create", "Security")'">
+    Create Incident Report
+</button>*@
+@if (Model.Count() > 0)
+{
+    <table class="table mt-4">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.severity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reported)
+            </th>
+
+            @if (User.IsInRole("Admin"))
+            {
+            <th>
+                @Html.DisplayNameFor(model => model.reportedBy)
+            </th>
+            }
+            
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.incidentStatus)
+            </th>
+
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.severity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reported)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                <td>
+                    @Html.DisplayFor(modelItem => item.reportedBy)
+                </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.incidentStatus)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "Security", new {  incidentID = item.incidentID })">
+                        Details
+                    </a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Edit", "Security", new {  id = item.incidentID })">
+                            Edit
+                        </a>
+                        <a>
+                            <button class="delete-button fw-bold text-danger text-danger bg-transparent border-0"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#delete-modal"
+                                    data-incident-id="@item.incidentID"
+                                    data-event-name="@item.incidentID">
+                                Delete
+                            </button>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h1 class="mt-4">No incidents.</h1>
+}
+
+<script>
+    var deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var deleteMessage = document.querySelector('.delete-message');
+            var incidentName = button.getAttribute('data-incident-name');
+            var incidentID = document.getElementById('delete-incident-id');
+            incidentID.value = button.getAttribute('data-incident-id');
+            deleteMessage.textContent = "Are you sure you want to delete this incident?";
+        });
+    });
+</script>

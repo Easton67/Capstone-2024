@@ -1,0 +1,679 @@
+﻿<!--
+    <Summary>
+    Creator: Tyler Barz
+    Created: 02/03/2024
+    Summary: Main window display, menu for navigation management
+            Profile menu for ease of access
+            FrameLoad control to centralize all UI display
+    Last Updated By: Tyler Barz
+    Last Updated: 02/03/2024-02/09/2023
+    What Was Changed: 
+        Changed window styling/size + frame size
+        Added rounding, removed border
+        Added a few window resources for buttons
+        Added hamburger menu
+        Added many styles
+    Last Updated By: Tyler Barz
+    Last Updated: 02/15/2024
+    What was Changed:
+        Fixed broken header, from a recent push
+        Added profile menu
+        Changed width/height to be bigger
+    Last Updated By: Tyler Barz
+    Last Updated: 02/19/2024
+    What was Changed:
+        Increased height/width again
+        Changed menu expanders
+        Updated profile menu slightly
+        Added events for all expanders (programmatically)
+    Last Updated By: Mitchell Stirmel
+    Last Updated: 02/27/2024
+    What was Changed:
+        Added navigation functionality to all created pages that have navigation buttons.
+    Last Updated By: Tyler Barz
+    Last Updated: 03/02/2024
+    What was Changed:
+        Added proper naming convention to new menu expanders
+        Changed where some menu buttons were categorized at
+        Removed Inventory expander
+    Last Updated By: Matthew Baccam
+    Last Updated: 04/04/2024
+    What was Changed:
+        Added the forward and back arrows
+-->
+
+<Window x:Class="WpfPresentation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Title="MainWindow" Height="650" Width="900">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,900,650" RadiusX="5" RadiusY="5"/>
+    </Window.Clip>
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Style for menu button -->
+            <Style x:Key="MenuButtons" TargetType="{x:Type Button}">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="LightGray"/>
+                <Setter Property="Margin" Value="0,1,0,3"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <!-- Setup border to remove default highlight style -->
+                                <Border x:Name="border"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="{TemplateBinding Tag}"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Center"
+                                           Width="120"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <!-- Change press/hover color -->
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#757575"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- If we decide to add blur upon menu expand -->
+            <Style x:Key="BlurGrid" TargetType="{x:Type Grid}">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <BlurEffect Radius="10"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Remove default styling where it highlights selected item -->
+            <Style x:Key="ListBoxNoSelect" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Background" Value="DimGray"/>
+                <Setter Property="Margin" Value="0,4,0,4"/>
+            </Style>
+
+            <!-- Style for Expander -->
+            <Style x:Key="ExpanderData" TargetType="{x:Type Expander}">
+                <Setter Property="Width" Value="145"/>
+                <Setter Property="Background" Value="DimGray"/>
+                <Setter Property="Foreground" Value="LightGray"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+
+            <!-- Expander Header Style -->
+            <Style x:Key="ExpanderHeader" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#ffffff"/>
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,0,1"/>
+            </Style>
+
+            <!-- List Box Styling -->
+            <Style x:Key="ListBoxHeader" TargetType="{x:Type ListBox}">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="dimgray"/>
+
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Change default selection color of listboxitem -->
+            <Style x:Key="CustomListBoxItem" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Background" Value="DimGray"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Border x:Name="Bd"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="Bd" Property="BorderBrush" Value="Transparent"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <RadialGradientBrush ColorInterpolationMode="ScRgbLinearInterpolation" 
+                                Center="-1,1" RadiusY="1" 
+                                RadiusX="2" 
+                                Opacity="1" 
+                                SpreadMethod="Repeat"  GradientOrigin="1,1">
+                <RadialGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </RadialGradientBrush.RelativeTransform>
+                <RadialGradientBrush.Transform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" CenterY="0"/>
+                        <SkewTransform/>
+                        <TranslateTransform Y="-8"/>
+                    </TransformGroup>
+                </RadialGradientBrush.Transform>
+                <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="White" Offset="0"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition />
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="46"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="46"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.ColumnSpan="3"
+                Background="DimGray"
+                MouseDown="MainBorder_MouseDown">
+
+            <Grid>
+                <Label
+                Foreground="LightGray" HorizontalContentAlignment="Center"
+                FontWeight="SemiBold" FontSize="13" Background="#FF443F3F"
+                    x:Name="lblTitle">
+
+                    Homeless Shelter Admin Dashboard
+                </Label>
+
+                <StackPanel HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                    <Image x:Name="backArrow" Margin="3,2,0,0" MouseDown="backArrow_MouseDown">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="Images/Left.png"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value="Images/LeftHover.png"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <Image x:Name="forwardArrow" Margin="2,2,0,0" 
+                            MouseDown="forwardArrow_MouseDown">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="Images/Right.png"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value="Images/RightHover.png"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+
+                </StackPanel>
+                
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Image Width="25" Height="26" Margin="0,0,3,0" 
+                           Source="Images/MinimizeButtonLight.png"
+                           MouseDown="MinimizeImage_MouseDown"/>
+                    <Image Width="25" Height="26" Margin="0,0,3,0" 
+                           Source="Images/CloseButton.png"
+                           MouseDown="CloseImage_MouseDown"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Panel.ZIndex="1" Grid.Row="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="45"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="imgHome" Width="35" Height="35" Grid.Column="0"
+                   Source="Images/HomeIcon.png" Margin="4,0,0,0"
+                   MouseDown="imgHome_MouseDown"/>
+
+            <Label x:Name="lblNavigationUserID" Grid.Column="1" VerticalAlignment="Center"
+                   FontWeight="SemiBold" Foreground="LightGray"
+                   Margin="3,3,0,0">
+                Homeless Shelter | Logged in as: Username
+
+            </Label>
+
+            <Image x:Name="imgHamburgerMenu" Width="35" Height="35" Grid.Column="1"
+                   Source="Images/MenuIcon.png" Margin="0,0,8,0"
+                   HorizontalAlignment="Right"
+                   MouseDown="imgHamburgerMenu_MouseDown"/>
+
+            <Image x:Name="imgProfile" Grid.Column="2" HorizontalAlignment="Right" 
+                   Width="35" Height="35" 
+                   Source="Images/AccountIcon.png"
+                   Margin="0,0,7,0"
+                   MouseDown="imgProfile_MouseDown"/>
+        </Grid>
+
+
+        <!-- Hamburger menu -->
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" 
+                    Height="auto" VerticalAlignment="Top" HorizontalAlignment="Right"
+                    Width="150" Panel.ZIndex="3"
+                    x:Name="stackMainMenu"
+                    Visibility="Collapsed">
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="100"/>
+            </StackPanel.Effect>
+            <ListBox Background="DimGray"
+                      BorderThickness="0" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      x:Name="lboxMenu">
+
+                <!-- Accounts drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemAccount">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Accounts"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnMassEmail" Style="{StaticResource MenuButtons}" Tag="Mass Alert Email" Click="btnMassEmail_Click"/>
+                            <Button x:Name="btnAdmin" Style="{StaticResource MenuButtons}" Tag="View Users" Click="btnAdmin_Click"/>
+                            <Button x:Name="btnCreateNewUser" Style="{StaticResource MenuButtons}" Tag="Create New User" Click="btnCreateNewUser_Click"/>
+                            <Button x:Name="Reminder" Style="{StaticResource MenuButtons}" Tag="Create Reminder" Click="Reminder_Click"/>
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+
+                <!-- Schedule drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemSchedule">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Schedule"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnViewScheduling" Style="{StaticResource MenuButtons}" Tag="View Scheduling" Click="btnViewScheduling_Click"/>
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Event drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemEvent">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Events"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnViewEvents" Style="{StaticResource MenuButtons}" Tag="View Events" Click="btnViewEvents_Click" />
+                            <!--<Button x:Name="btnEditEvents"  Style="{StaticResource MenuButtons}" Tag="Edit Events" Click="btnEditEvents_Click"/>-->
+                            <Button x:Name="btnCreateEvents" Style="{StaticResource MenuButtons}" Tag="Create Events" Click="btnCreateEvents_Click"/>
+                            <Button x:Name="btnViewFundraisingEvent" Style="{StaticResource MenuButtons}" Tag="View Fundraisers" Click="btnViewFundraisingEvent_Click" />
+                            <Button x:Name="btnCreateFundraisingEvent" Style="{StaticResource MenuButtons}" Tag="Create Fundraiser" Click="btnCreateFundraisingEvent_Click" />
+                            <Button x:Name="btnViewEventMeals" Style="{StaticResource MenuButtons}" Tag="View Event Meals" Click="btnViewEventMeals_Click"  />
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Donations drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemDonation">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Donation"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnDonationManager" Style="{StaticResource MenuButtons}" Tag="Donation Manager" Click="btnDonationManager_Click" />
+                            <Button x:Name="btnViewResourcesNeeded" Style="{StaticResource MenuButtons}" Tag="Resources Needed" Click="btnViewResourcesNeeded_Click" />
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Analytics drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemAnalytics">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Analytics"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnViewStays" Style="{StaticResource MenuButtons}" Tag="Stays" Click="btnViewStays_Click"/>
+                            <Button x:Name="btnViewRooms" Style="{StaticResource MenuButtons}" Tag="Rooms" Click="Button_Click"/>
+                            <Button x:Name="btnUpdateRoomStatus" Style="{StaticResource MenuButtons}" Tag="Room Status" Click="btnUpdateRoomStatus_Click" />
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+
+                <!-- Visitations drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemVisitations">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Visitations"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button Style="{StaticResource MenuButtons}" x:Name="btnMenuViewVisitations" Tag="View Visitations" Click="btnMenuViewVisitations_Click"/>
+
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Housekeeping drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemHousekeeping">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Housekeeping"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnHousekeepingTasks" Style="{StaticResource MenuButtons}" Tag="Task by Category" Click="btnHousekeepingTasks_Click"/>
+                            <Button x:Name="btnHousekeepingSchedule" Style="{StaticResource MenuButtons}" Tag="Staff Schedule" Click="btnHousekeepingSchedule_Click"/>
+                            <Button x:Name="btnHouseKeepingTask" Style="{StaticResource MenuButtons}" Tag="Task List" Click="btnHouseKeepingTask_Click" />
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Supplies drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemTransportation">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Supply Room"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button Style="{StaticResource MenuButtons}" x:Name="btnMenuViewAllItems" Tag="View Supply List" Click="btnMenuViewAllItems_Click"/>
+                            <Button Style="{StaticResource MenuButtons}" x:Name="btnMenuTransportation" Tag="Supplies on Order" Click="btnMenuTransportation_Click"/>
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Kitchen drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemKitchen">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock x:Name="btnViewKitchen" Style="{StaticResource ExpanderHeader}" Text="Kitchen"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnCreateFoodMenu" Style="{StaticResource MenuButtons}" Tag="Create Food Menu" Click="btnCreateFoodMenu_Click"/>
+                            <Button x:Name="btnViewFoodMenu" Style="{StaticResource MenuButtons}" Tag="View Food Menu" Click="btnViewFoodMenu_Click"/>
+                            <Button x:Name="btnKitchenInventory" Style="{StaticResource MenuButtons}" Tag="Inventory" Click="btnKitchenInventory_Click"/>
+                            <Button Style="{StaticResource MenuButtons}" x:Name="btnViewRecipes" Tag="View Recipes" Click="btnViewRecipes_Click"/>
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Supplier drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemSupplier">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Suppliers"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnViewSupplier" Style="{StaticResource MenuButtons}" Tag="View Supplier" Click="btnViewSupplier_Click"
+                                 />
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Maintenance drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemMaintenance">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Maintenance"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnMaintenanceRequests" Style="{StaticResource MenuButtons}" Tag="Requests" Click="btnMaintenanceRequests_Click"/>
+                            <Button x:Name="btnMenuPartsInventory" Style="{StaticResource MenuButtons}" Tag="Parts Inventory" Click="btnPartsInventory_Click"/>
+                            <Button x:Name="btnItemInventory" Style="{StaticResource MenuButtons}" Tag="Item Inventory" Click="btnItemInventory_Click"/>
+                            <Button x:Name="btnScheduledRepairs" Style="{StaticResource MenuButtons}" Tag="Scheduled Repairs" Click="btnScheduledRepairs_Click"/>
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Security drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemSecurity">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Security"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnSecurity" Style="{StaticResource MenuButtons}" Tag="Incidents" Click="btnSecurity_Click"/>
+                            <Button x:Name="btnYourIncidents" Style="{StaticResource MenuButtons}" Tag="Your Incidents" Click="btnYourIncidents_Click" />
+                            <Button x:Name="btnConfiscatedItems" Style="{StaticResource MenuButtons}" Tag="Confiscated Items" Click="btnConfiscatedItems_Click"/>
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- VolunteerCoordinator drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                             x:Name="btnMenuItemVolunteerCoordinator">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Volunteer"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnViewVolunteer" Style="{StaticResource MenuButtons}" Tag="Volunteers" Click="btnViewVolunteer_Click"/>
+
+                            <Button x:Name="btnVolunteerEvents" Style="{StaticResource MenuButtons}" Tag="Volunteer Events" Click="btnVolunteerEvents_Click"  />
+
+                            <Button x:Name="btnVolunteerApplications" Style="{StaticResource MenuButtons}" Tag="Applications" Click="btnVolunteerApplications_Click"/>
+
+                            <Button x:Name="btnVolunteerAssessment" Style="{StaticResource MenuButtons}" Tag="Assess Volunteers" Click="btnVolunteerAssessment_Click" />
+
+                            <Button x:Name="btnVolunteerQuestionnaire" Style="{StaticResource MenuButtons}" Tag="Questionnaire" Click="btnVolunteerQuestionnaire_Click" />
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Appointment drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+              x:Name="btnMenuItemAppointment">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Appointments"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnViewAppointment" Style="{StaticResource MenuButtons}" Tag="View Appointment" Click="btnViewAppointment_Click"  />
+
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+                <!-- Memberships drop down -->
+                <ListBoxItem Style="{StaticResource CustomListBoxItem}"
+                        x:Name="btnMenuItemMemberships">
+                    <Expander Style="{StaticResource ExpanderData}">
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource ExpanderHeader}" Text="Memberships"/>
+                        </Expander.Header>
+                        <ListBox Style="{StaticResource ListBoxHeader}">
+                            <Button x:Name="btnViewMembershipApplications" Style="{StaticResource MenuButtons}" Tag="View Applications" Click="btnViewMembershipApplications_Click" />
+
+                        </ListBox>
+                    </Expander>
+                </ListBoxItem>
+
+            </ListBox>
+        </StackPanel>
+        <!-- Profile menu -->
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" 
+                    Height="120" VerticalAlignment="Top" HorizontalAlignment="Right"
+                    Width="250" Panel.ZIndex="3"
+                    x:Name="stackProfileMenu"
+                    Background="DimGray"
+                    Visibility="Collapsed">
+
+
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="100"/>
+            </StackPanel.Effect>
+
+            <!-- Display area -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="85"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title/logout -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label FontWeight="SemiBold" FontSize="14"
+                           Foreground="White"
+                           HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Center">
+                        Homeless Shelter Admin
+                    </Label>
+
+                    <Button Grid.Column="2"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontSize="14"
+                            x:Name="btnProfileLogout"
+                            Style="{StaticResource MenuButtons}"
+                            Click="btnProfileLogout_Click">
+                        <Button.Content>
+                            <TextBlock>
+                                <Underline>Logout</Underline>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+
+                <!-- Image/Profile edit -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="1" Grid.Column="0"
+                        Source="Images/ProfileIcon.png"/>
+
+                    <Label Grid.Column="1"
+                           x:Name="lblProfileUserID"
+                           Height="30" HorizontalContentAlignment="Left"
+                           Foreground="White"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Top"
+                           Margin="5,0,0,0">
+                        user@company.com
+                    </Label>
+
+
+                    <Label Grid.Column="1"
+                           x:Name="lblUserRoles"
+                           Height="25" HorizontalContentAlignment="Left"
+                           Foreground="White"
+                           FontSize="11"
+                           FontWeight="Light"
+                           Margin="5,0,0,25">
+                        <Label.ToolTip>
+                            <TextBlock x:Name="lblRoleDisplayTT"/>
+                        </Label.ToolTip>
+                        Role Display
+                    </Label>
+
+                    <Button Grid.Column="1"
+                            Foreground="LightSkyBlue"
+                            Width="85"
+                            Margin="2,20,0,5"
+                            HorizontalAlignment="Left"                            
+                            Style="{StaticResource MenuButtons}"
+                            Click="Button_Click_1">
+                        <Button.Content>
+                            <TextBlock>
+                                <Underline>Edit Profile</Underline>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+
+                </Grid>
+            </Grid>
+
+
+        </StackPanel>
+
+        <Rectangle  Panel.ZIndex="0" Grid.Row="1" Grid.ColumnSpan="3">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF443F3F"/>
+                    <GradientStop Color="#151515" Offset="0.85"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Frame Grid.Row="2" Grid.Column="1" x:Name="FrameLoad" 
+               NavigationUIVisibility="Hidden" Height="545" Width="800"
+               Background="Transparent" Navigated="FrameLoad_Navigated"/>
+			   
+    </Grid>
+</Window>

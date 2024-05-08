@@ -1,0 +1,197 @@
+﻿<Page x:Class="WpfPresentation.Pages.Transportation.pgTransportationOrders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Transportation"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pgTransportationOrders" Loaded="Page_Loaded">
+
+<!--
+    <Summary>
+    Creator: Liam Easton
+    Created: 04/04/2024
+    Summary: View all Transportation Orders
+    Last Updated By: Miyada Abas
+    Last Updated: 04/04/2024
+    What Was Changed: Addd Delete Order Button
+    Last Updated By: Ibrahim Albashair
+    What Was Changed: Inital Creation
+    Last Updated: 04/25/2024
+    What Was Changed: Added My Orders button
+    <Summary>
+-->
+    <Grid Margin="0,0,0,0">
+        <Grid Height="545">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="84"/>
+                <RowDefinition Height="22"/>
+                <RowDefinition Height="47"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalContentAlignment="Center"
+                   Foreground="Black"
+                   FontWeight="Medium" 
+                   FontSize="20" 
+                   Margin="0,31,0,0">Orders</Label>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button x:Name="btnCreateOrder"
+                        Visibility="Hidden"
+                    Style="{StaticResource btnRegular}"
+                    HorizontalAlignment="left"
+                    FontSize="20"
+                    FontWeight="SemiBold"
+                    Background="{StaticResource clrPrimary}"
+                    Margin="20,0,0,0"
+                    Content="Create Order" Click="btnCreateOrder_Click" >
+                    <Button.LayoutTransform>
+                        <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                    </Button.LayoutTransform>
+                </Button>
+                <Button x:Name="btnMyOrders"
+                        Visibility="Hidden"
+                    Style="{StaticResource btnRegular}"
+                    HorizontalAlignment="left"
+                    FontSize="20"
+                    FontWeight="SemiBold"
+                    Background="{StaticResource clrPrimary}"
+                    Margin="10,0,0,0"                        
+                    Content="My Orders" Click="btnMyOrders_Click">
+                    <Button.LayoutTransform>
+                        <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                    </Button.LayoutTransform>
+                </Button>
+
+                <Button x:Name="btnDeleteOrder"
+                    Style="{StaticResource btnRegular}"
+                    HorizontalAlignment="left"
+                    Visibility="Hidden"
+                    FontSize="20"
+                    FontWeight="SemiBold"
+                    Background="{StaticResource clrPrimary}"
+                    Margin="10,0,0,0"
+                    Content="Delete Order" Click="btnDeleteOrder_Click"  >   
+                    <Button.LayoutTransform>
+                        <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                    </Button.LayoutTransform>
+                </Button>
+
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1">
+                <Button x:Name="btnDeleteMyOrder"
+						  Style="{StaticResource btnRegular}"
+						  HorizontalAlignment="Center"
+						  FontSize="20"
+						  FontWeight="SemiBold"
+						  Background="{StaticResource clrPrimary}"
+						  Margin="20,0,0,0"
+						  Content="Delete Order" Click="btnDeleteOrder_Click" >
+                    <Button.LayoutTransform>
+                        <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                    </Button.LayoutTransform>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,0,0,0">
+                <TextBox x:Name="txtSearchItem" 
+                         Text="Search Item"
+                         Style="{StaticResource txtRegular}" 
+                         Height="28"
+                         Width="245" 
+                         LostFocus="txtSearchItem_LostFocus" 
+                         Panel.ZIndex="2" GotFocus="txtSearchItem_GotFocus" TextChanged="txtSearchItem_TextChanged" >
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <DataGrid Grid.Row="3" 
+                      x:Name="grdOrders"
+                      AutoGenerateColumns="false"
+                      CanUserResizeColumns="True" 
+                      Style="{StaticResource dgDataGrid}"
+                      Margin="20,0,20,0" Height="370">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                        <Setter Property="BorderBrush" Value="Black" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="13" />
+                        <Setter Property="HorizontalContentAlignment" Value="center" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Day Posted" Binding="{Binding DayPosted, StringFormat=d}" 
+                                        Width="80" MinWidth="80"/>
+                    <DataGridTextColumn Header="Amount" Binding="{Binding LineItemAmount, StringFormat=C}"
+                                        Width="70" MinWidth="60"/>
+                    <DataGridTextColumn Header="Item Name" Binding="{Binding TransportItem}" 
+                                        Width="130" MinWidth="80"/>
+                    <DataGridTextColumn Header="Day To Pick Up" Binding="{Binding DayToPickUp, StringFormat=d}" 
+                                        Width="110" MinWidth="110"/>
+                    <DataGridTextColumn Header="Assigned" Binding="{Binding Fulfilled}" 
+                                        Width="70" MinWidth="65"/>
+                    <DataGridTextColumn Header="Vendor Name" Binding="{Binding Vendor}" 
+                                        MinWidth="150"/>
+                    <DataGridTextColumn Header="Location" Binding="{Binding city}" 
+                                        MinWidth="148"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Row="3" 
+              x:Name="grdOrdersByDriver"
+              AutoGenerateColumns="false"
+              CanUserResizeColumns="True" 
+              Visibility="Hidden"
+              Style="{StaticResource dgDataGrid}"
+              Margin="20,0,20,0" Height="370">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                        <Setter Property="BorderBrush" Value="Black" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FontSize" Value="13" />
+                        <Setter Property="HorizontalContentAlignment" Value="center" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Day Posted" Binding="{Binding DayPosted, StringFormat=d}" 
+                            Width="80" MinWidth="80"/>
+                    <DataGridTextColumn Header="Item ID" Binding="{Binding TransportItemID}" 
+                            Width="130" MinWidth="80"/>
+                    <DataGridTextColumn Header="Day To Pick Up" Binding="{Binding DayToPickUp, StringFormat=d}" 
+                            Width="110" MinWidth="110"/>
+                    <DataGridTextColumn Header="Day Dropped Off" Binding="{Binding DayDroppedOff, StringFormat=d}" 
+                            Width="110" MinWidth="110"/>
+                    <DataGridTextColumn Header="Assigned" Binding="{Binding Fulfilled}" 
+                            Width="70" MinWidth="65"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>

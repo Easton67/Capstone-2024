@@ -1,0 +1,93 @@
+﻿<!--
+    <Summary>
+    Creator: Ethan McElree
+    Created: 02/13/2024
+    Summary: Page for Creating a schedule.
+    Last Updated By: Ethan McElree
+    Last Updated: 02/13/2024
+    What Was Changed: Initial Creation
+    <Summary>
+-->
+    <Page x:Class="WpfPresentation.Pages.Schedule.pgCreateSchedule"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Schedule"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pgCreateSchedule">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Please select the timeframe for the schedule."
+           HorizontalAlignment="Center" VerticalAlignment="Center"
+           FontWeight="Medium" Grid.Row="0" Style="{StaticResource lblHeader}"/>
+        <Label Content="Month"
+            HorizontalAlignment="Left" Style="{StaticResource lblSubHeader}"
+            Grid.Row="1" Margin="75 40 0 0"/>
+        <Label Content="Week"
+            HorizontalAlignment="Center" Style="{StaticResource lblSubHeader}"
+            Grid.Row="1" Margin="30 40 0 0"/>
+        <Label Content="Year"
+            HorizontalAlignment="Right" Style="{StaticResource lblSubHeader}"
+            FontSize="20" Grid.Row="1" Margin="0 40 100 0"/>
+        <ComboBox x:Name="cboScheduleMonth" FontSize="15" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Width="150" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50 0 0 0">
+            <ComboBoxItem Content="January" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="February" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="March" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="April" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="May" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="June" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="July" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="August" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="September" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="October" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="November" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="December" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="cboScheduleYear" FontSize="15" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="2" Width="150" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 50 0">
+            <ComboBoxItem Content="2024" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="2025" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="2026" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="2027" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="2028" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="2029" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="2030" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="cboScheduleWeek" Grid.Row="2" FontSize="15" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50 0 0 0">
+            <ComboBoxItem Content="Week 1" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="Week 2" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="Week 3" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+            <ComboBoxItem Content="Week 4" FontSize="15" FontWeight="Bold"></ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="lblScheduleStartDate" Style="{StaticResource lblRegular}" Content="Start Date" Grid.Row="3" HorizontalAlignment="Left"
+               Margin="150 0 0 70"/>
+        <DatePicker x:Name="dateScheduleStartDate" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Margin="210 0 0 70"/>
+        <Label x:Name="lblScheduleEndDate" Style="{StaticResource lblRegular}" Content="End Date" Grid.Row="3" HorizontalAlignment="Right"
+               Margin="0 0 270 70"/>
+        <DatePicker x:Name="dateScheduleEndDate" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="150" Margin="0 0 110 70"/>
+        <Button x:Name="btnCreateSchedule" Grid.Row="4" HorizontalAlignment="Right"
+                VerticalAlignment="Center"  Content="Create Schedule" FontSize="18" FontWeight="Bold" 
+                Click="btnCreateSchedule_Click" Margin="0 0 30 0" Style="{StaticResource btnRegular}">
+            <Button.LayoutTransform>
+                <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+            </Button.LayoutTransform>
+        </Button>
+        <Button x:Name="btnCancelCreateSchedule" Grid.Row="4" HorizontalAlignment="Left" Margin="30 0 0 0"
+            Style="{StaticResource btnRegular}" Content="Cancel" FontSize="18" FontWeight="Bold" Click="btnCancelCreateSchedule_Click">
+            <Button.LayoutTransform>
+                <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+            </Button.LayoutTransform>
+        </Button>
+    </Grid>
+</Page>

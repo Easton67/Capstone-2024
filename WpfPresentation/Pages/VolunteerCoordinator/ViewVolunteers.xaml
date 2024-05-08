@@ -1,0 +1,51 @@
+﻿<Page x:Class="WpfPresentation.Pages.VolunteerCoordinator.ViewVolunteers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.VolunteerCoordinator"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="ViewVolunteers">
+    <!--
+    <Summary>
+    Creator: Ethan McElree
+    created: 03/30/2024
+    Summary: View Volunteers page.
+    Last updated By: Ethan McElree
+    Last Updated: 03/30/2024
+    What was changed/updated: Initial Creation
+    Last updated By: Liam Easton
+    Last Updated: 04/26/2024
+    What was changed/updated: fixed design height and changed spacing on bottom buttons
+    </Summary>
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Label Style="{StaticResource lblHeader}" x:Name="lblVolunteers" Content="Volunteers"/>
+        <Button x:Name="SignupVolunteer" Content="Sign Up Volunteer" Style="{StaticResource btnRegular}" Grid.Row="1" Margin="0 0 450 0" Click="SignupVolunteer_Click"/>
+        <Button x:Name="DeleteVolunteers" Content="Delete Volunteer" Style="{StaticResource btnRegular}" Grid.Row="1" Margin="225,0,225,0" Click="DeleteVolunteers_Click"/>
+        <Button x:Name="ExitVolunteers" Content="Exit" Style="{StaticResource btnRegular}" Margin="450,0,0,0" Click="ExitVolunteers_Click" Grid.Row="1"/>
+        <DataGrid Style="{StaticResource dgDataGrid}" Grid.Row="2" x:Name="datVolunteers" AutoGenerateColumns="False" Margin="10,0,10,0" FontSize="12" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Email" Binding="{Binding VolunteerID}" Width="*"/>
+                <DataGridTextColumn Header="First" Binding="{Binding FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Last" Binding="{Binding LastName}" Width="*"/>
+                <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="*"/>
+                <DataGridTextColumn Header="Gender" Binding="{Binding DisplayGender}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding AccountStatus}" Width="*"/>
+                <DataGridTextColumn Header="Role" Binding="{Binding RoleID}" Width="*"/>
+                <DataGridTextColumn Header="Registration Date" Binding="{Binding RegistrationDate, StringFormat='d'}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*"/>
+                <DataGridTextColumn Header="Zipcode" Binding="{Binding ZipCode}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="ReloadList" Content="Refresh" Style="{StaticResource btnRegular}" Margin="97,25,225,25" Grid.Row="3" Click="ReloadList_Click" HorizontalAlignment="Left"/>
+        <Button x:Name="btnEditVolunteers" Content="Edit" Style="{StaticResource btnRegular}" Grid.Row="3" Click="btnEditVolunteers_Click" HorizontalAlignment="Right" Margin="0,0,97,0"/>
+    </Grid>
+</Page>

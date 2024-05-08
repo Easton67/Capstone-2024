@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataObjects.RoomVM>
+
+@{
+    ViewBag.Title = "Rooms";
+}
+
+<h2>Rooms</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateRoom")
+</p>
+<table class="table bg-light">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShelterID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShelterID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoomID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoomID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoomID })
+        </td>
+    </tr>
+}
+
+</table>

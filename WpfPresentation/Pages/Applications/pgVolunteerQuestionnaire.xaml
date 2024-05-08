@@ -1,0 +1,97 @@
+﻿<!--
+    /// <summary>
+    ///Creator:            Darryl Shirley
+    ///Created:            04/17/2024
+    ///Summary:            Page used to Submit Volunteer Questionnaires
+    ///Last Updated By:    Darryl Shirley
+    ///Last Updated:       04/17/2024
+    ///What Was Changed:   Initial Creation
+    /// </summary>
+-->
+    <Page x:Class="WpfPresentation.Pages.Applications.pgVolunteerQuestionnaire"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Applications"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="pgVolunteerQuestionnaire">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblTitle" Grid.Row="0" Style="{StaticResource lblSubHeader}" Grid.ColumnSpan="2" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Volunteer Questionnaire</Label>
+        <Label x:Name="lblVolunteerID" Style="{StaticResource lblSubHeader}" Grid.Row="1"  Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Pick you Volunteer ID</Label>
+        <ComboBox x:Name="cboVolunteerList" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" SelectionChanged="cboVolunteerList_SelectionChanged"></ComboBox>
+        <Label x:Name="lblSkillsQuestion" Style="{StaticResource lblSubHeader}" Grid.Row="2" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            What are your Skills?
+        </Label>
+        <TextBox x:Name="txtSkills" Grid.Row="2" Grid.Column="1" Margin="10">
+            List Skills here...
+        </TextBox>
+        <Label x:Name="lblVehiclesQuestion" Style="{StaticResource lblSubHeader}" Grid.Row="3" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            What Vehicles can you operate?
+        </Label>
+        <TextBox x:Name="txtVehicles" Grid.Row="3" Grid.Column="1" Margin="10">
+            List Skills here...
+        </TextBox>
+        <Label x:Name="lblPriorExperience" Style="{StaticResource lblSubHeader}" Grid.Row="4" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Have you ever worked with the homeless before?
+        </Label>
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblExperienceYes1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Yes</Label>
+            <CheckBox x:Name="cbExperienceYes1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+        </Grid>
+        <Label x:Name="lblStudentStatus" Style="{StaticResource lblSubHeader}" Grid.Row="5" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Are you a student?
+        </Label>
+        <Grid Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblStudentYes1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Yes</Label>
+            <CheckBox x:Name="cbStudentYes1" Grid.Column="1" HorizontalAlignment="left" VerticalAlignment="Center"></CheckBox>
+        </Grid>
+        <Label x:Name="lblSchoolName" Style="{StaticResource lblSubHeader}" Grid.Row="6" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            If so, what school?
+        </Label>
+        <TextBox x:Name="txtSchoolNames" Grid.Row="6" Grid.Column="1" Margin="10">
+            List School Name here...
+        </TextBox>
+        <Label x:Name="lblGroupExperience" Style="{StaticResource lblSubHeader}" Grid.Row="7" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Do you work well in groups?
+        </Label>
+        <Grid Grid.Row="7" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblGroupYes1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Yes</Label>
+            <CheckBox x:Name="cbGroupYes1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" ></CheckBox>
+        </Grid>
+        <Button x:Name="btnSubmit" Style="{StaticResource btnMedium}" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalContentAlignment="Center" Click="btnSubmit_Click">
+            Submit
+        </Button>
+        
+        
+    </Grid>
+</Page>

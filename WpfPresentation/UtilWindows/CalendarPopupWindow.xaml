@@ -1,0 +1,36 @@
+﻿<!--///<summary>
+    /// Creator: Matthew Baccam
+    /// Created: 02/15/2024
+    /// Summary: Initial Creation.
+    /// Last Updated By: Matthew Baccam
+    /// Last Updated: 02/15/2024
+    /// What Was changed: Initial creation
+    ///</summary>-->
+<Window x:Class="WpfPresentation.CalendarPopupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation"
+        mc:Ignorable="d"
+        Title="Calendar" Height="350" Width="250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="63*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Calendar x:Name="calendar" Grid.RowSpan="4" Grid.ColumnSpan="5"  Margin="0,0,0,83" MouseDoubleClick="calendar_MouseDoubleClick" ></Calendar>
+        <Label x:Name="labelCalendarDate"  Style="{StaticResource lblHeader}" Grid.Row="1" Grid.ColumnSpan="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" FontWeight="Bold" Margin="0,83,0,83" Grid.RowSpan="3"></Label>
+        <Button x:Name="buttonCalendarDiscard" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold" Margin="25" Click="buttonCalendarDiscard_Click">Discard</Button>
+        <Button x:Name="buttonCalendarSave" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" FontWeight="Bold" Margin="25" Click="buttonCalendarSave_Click">Save</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,84 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/15/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/15/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/12/2024
+    What Was Changed: changed around values to display reasonably, and added viewbag hero
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+    Last Updated By: Liam Easton
+    Last Updated: 4/25/2024
+    What Was Changed: changed ui to match other pages
+*@
+@model IEnumerable<DataObjects.VolunteerVM>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "All Volunteers";
+}
+
+<table class="table mt-4">
+    <tr class="bg-dark text-white">
+        <th>
+            Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleDisplay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
+        </th>
+        <th>Options</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="background: #CFCECD!important" class="text-dark">
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayGender)
+            </td>
+            <td>
+                @item.Phone
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleDisplay)
+            </td>
+            <td>
+                @item.RegistrationDate.ToString("d")
+            </td>
+            <td>
+                <a class="text-decoration-none text-dark" href="@Url.Action("Details", "Volunteering", new { id = item.VolunteerID })">
+                    Details
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

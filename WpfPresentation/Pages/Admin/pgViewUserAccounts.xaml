@@ -1,0 +1,354 @@
+﻿<Page x:Class="WpfPresentation.Pages.Admin.pgViewUserAccounts"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="pgViewUserAccounts" Background="Transparent" Loaded="Page_Loaded">
+    <!--<Summary>
+        Creator: Liam Easton
+        created: 03/3/2024
+        Summary: creation of the pgViewUserAccounts xaml
+        Last updated By: Liam Easton
+        Last Updated: 03/3/2024
+        What was changed/updated: initial creation
+        Last updated By: Sagan DeWald
+        Last Updated: 04/25/2024
+        What was changed/updated: Added Client Priority field.
+    </Summary>-->
+    <Grid>
+        <Grid Margin="0,0,0,0">
+            <Grid Height="545">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="84"/>
+                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="47"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--#region User Buttons-->
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="btnViewEmployees"
+                            Style="{StaticResource btnRegular}"
+                            HorizontalAlignment="left"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Background="{StaticResource clrPrimary}"
+                            Margin="20,0,0,0"
+                            Content="Employees" 
+                            Click="btnViewEmployees_Click">
+                        <Button.LayoutTransform>
+                            <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                        </Button.LayoutTransform>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="btnViewClients"
+                            Style="{StaticResource btnRegular}"
+                            HorizontalAlignment="left"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Background="White"
+                            Margin="120,0,0,0"
+                            Content="Clients" Click="btnViewClients_Click">
+                        <Button.LayoutTransform>
+                            <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                        </Button.LayoutTransform>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="btnViewManagement"
+                            Style="{StaticResource btnRegular}"
+                            HorizontalAlignment="left"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Background="White"
+                            Margin="220,0,0,0"
+                            Content="Mangement" Click="btnViewManagement_Click">
+                        <Button.LayoutTransform>
+                            <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                        </Button.LayoutTransform>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="btnViewVolunteers"
+                        Style="{StaticResource btnRegular}"
+                        HorizontalAlignment="left"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Background="White"
+                        Margin="320,0,0,0"
+                        Content="Volunteers" Click="btnViewVolunteers_Click" >
+                        <Button.LayoutTransform>
+                            <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                        </Button.LayoutTransform>
+                    </Button>
+                </StackPanel>
+                <!--<Summary>
+                    Creator: Marwa Ibrahim
+                    created: 03/27/2024
+                    Summary: creation of the pgViewChangePassword xaml
+                    Last updated By: Marwa Ibraim
+                    Last Updated: 03/27/2024
+                </Summary>-->
+                <StackPanel Grid.Row="1">
+                    <Button Content="Reset password" HorizontalAlignment="Right" Background="White"
+                            Margin="0 0 20 0"
+                             x:Name="btnChangePassword" FontSize="20" FontWeight="SemiBold" Width="180" Height="40" Click="btnChangePassword_Click" >
+
+
+                        <Button.LayoutTransform>
+                            <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                        </Button.LayoutTransform>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <PasswordBox x:Name="txtNewPassword" HorizontalAlignment="Right" Background="White" 
+              FontSize="20" FontWeight="SemiBold" Width="180" Height="40" Margin="0, 0, 120, 0"  >
+                        <PasswordBox.LayoutTransform>
+                            <ScaleTransform ScaleX=".5" ScaleY=".49"/>
+                        </PasswordBox.LayoutTransform>
+                    </PasswordBox>
+
+                </StackPanel>
+                <!--<Summary>
+                Creator: Miyada Abas
+                created: 04/19/2024
+                Summary: creation of the pgViweDeactivteApplication xaml
+                Last updated By: Miyada Abas
+                Last Updated: 04/19/2024
+                </Summary>-->
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="btnViweDeactivteApplication"
+                            Padding="10 0"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="SemiBold"
+                    Background="White"
+                    Margin="350,0,120,0"
+                    Content="Deactivate Client" Click="btnViweDeactivteApplication_Click" >
+                    <Button.LayoutTransform>
+                     <ScaleTransform ScaleX=".5" ScaleY=".49" />
+                        </Button.LayoutTransform>
+                    </Button>
+                </StackPanel>
+                <!--#endregion User Buttons-->
+                <Label Grid.Row="0" 
+                       HorizontalContentAlignment="Center"
+                       Foreground="Black"
+                       FontWeight="Medium"
+                       FontSize="20" 
+                       Margin="0,31,0,0"
+                       Content="Users" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,0,0,0">
+                    <TextBox x:Name="txtSearchName" 
+                             Text="Search"
+                             Style="{StaticResource txtRegular}" 
+                             Height="28"
+                             Width="141" 
+                             Panel.ZIndex="2" 
+                             GotFocus="txtSearchName_GotFocus" 
+                             LostFocus="txtSearchName_LostFocus" 
+                             TextChanged="txtSearchName_TextChanged" >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </StackPanel>
+                <!--#region grdEmployees-->
+                <DataGrid Grid.Row="3" 
+                          x:Name="grdEmployees"
+                          AutoGenerateColumns="false"
+                          CanUserResizeColumns="false" 
+                          Style="{StaticResource dgDataGrid}"
+                          Margin="20,0,20,0" Height="370">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="BorderThickness" Value="0,0,1,1" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="HorizontalContentAlignment" Value="center" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Email/EmployeeID" Binding="{Binding UserID}" 
+                            Width="200"/>
+                        <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" 
+                            Width="180"/>
+                        <DataGridTextColumn Header="Gender" Binding="{Binding DisplayGender}" 
+                            Width="60"/>
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding DisplayDate}" 
+                            Width="80"/>
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" 
+                            Width="178"/>
+                        <DataGridTextColumn Header="ZipCode" Binding="{Binding ZipCode}" 
+                            Width="60"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Edit" Click="MenuItem_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <!--#endregion grdEmployees-->
+                <!--#region grdClients-->
+                <DataGrid Grid.Row="3" 
+                          x:Name="grdClients"
+                          AutoGenerateColumns="false"
+                          CanUserResizeColumns="false" 
+                          Style="{StaticResource dgDataGrid}"
+                          Margin="20,0,20,0" Height="370">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="BorderThickness" Value="0,0,1,1" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="HorizontalContentAlignment" Value="center" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Email/ClientID" Binding="{Binding UserID}" />
+                        <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" />
+                        <DataGridTextColumn Header="Gender" Binding="{Binding DisplayGender}" 
+                            Width="60"/>
+                        <DataGridTextColumn Header="Priority" Binding="{Binding ClientPriority}" 
+                            Width="60"/>
+                        <DataGridTextColumn Header="Registation Date" Binding="{Binding DisplayDate}" 
+                            Width="120"/>
+                        <DataGridTextColumn Header="Account Status" Binding="{Binding AccountStatus}" 
+                            Width="110"/>
+                        <DataGridTextColumn Header="Accomadations" Binding="{Binding Accomadations}" 
+                            Width="227"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Edit" Click="MenuItem_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <!--#endregion grdClients-->
+                <!--#region grdManagement-->
+                <DataGrid Grid.Row="3" 
+                          x:Name="grdManagement"
+                          AutoGenerateColumns="false"
+                          CanUserResizeColumns="false" 
+                          Style="{StaticResource dgDataGrid}"
+                          Margin="20,0,20,0" Height="370">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="BorderThickness" Value="0,0,1,1" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="HorizontalContentAlignment" Value="center" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Email/EmployeeID" Binding="{Binding UserID}" />
+                        <DataGridTextColumn Header="Role" Binding="{Binding RoleDisplay}" />
+                        <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" 
+                            Width="148"/>
+                        <DataGridTextColumn Header="Gender" Binding="{Binding DisplayGender}" 
+                            Width="60"/>
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding DisplayDate}" 
+                            Width="80"/>
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" 
+                            Width="135"/>
+                        <DataGridTextColumn Header="ZipCode" Binding="{Binding ZipCode}" 
+                            Width="70"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Edit User" Click="MenuItem_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <!--#endregion grdManagement-->
+                <!--#region grdVolunteers-->
+                <DataGrid Grid.Row="3" 
+                      x:Name="grdVolunteers"
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="false" 
+                      Style="{StaticResource dgDataGrid}"
+                      Margin="20,0,20,0" Height="370"
+                      Visibility="Hidden">
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="BorderThickness" Value="0,0,1,1" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="HorizontalContentAlignment" Value="center" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Role" Binding="{Binding RoleDisplay}" />
+                        <DataGridTextColumn Header="Email/VolunteerID" Binding="{Binding UserID}" />
+                        <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" 
+                             Width="148"/>
+                        <DataGridTextColumn Header="Gender" Binding="{Binding DisplayGender}" 
+                             Width="60"/>
+                        <DataGridTextColumn Header="Phone" Binding="{Binding PhoneNumber}" />
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" 
+                             Width="135"/>
+                        <DataGridTextColumn Header="ZipCode" Binding="{Binding ZipCode}" 
+                            Width="*"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Edit User" Click="MenuItem_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <!--#endregion Volunteer-->
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

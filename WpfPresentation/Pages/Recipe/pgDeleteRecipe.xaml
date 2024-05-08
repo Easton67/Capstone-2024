@@ -1,0 +1,46 @@
+﻿<!--
+    <Summary>
+    Creator: Ethan McElree
+    Created: 02/17/2024
+    Summary: Page for deleting recipes.
+    Last Updated By: Ethan McElree
+    Last Updated: 02/17/2024
+    What Was Changed: Initial Creation.
+    <Summary>
+-->
+    <Page x:Class="WpfPresentation.Pages.Recipe.pgDeleteRecipe"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Recipe"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pgDeleteRecipe">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label x:Name="lblDeleteRecipeTitle" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource lblHeader}">Choose any recipes you want deleted.</Label>
+        <ListBox x:Name="listBoxDeleteRecipe" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox x:Name="chckboxRecipeName" Content="{Binding RecipeName}" IsChecked="{Binding SelectedRecipe}" Margin="250,0,0,0" FontSize="20"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="btnDeleteRecipes" Click="btnDeleteRecipes_Click" Content="Delete Selected Recipes" Grid.Row="2" Style="{StaticResource btnRegular}" HorizontalAlignment="Center" Margin="0,15,250,5">
+            <Button.LayoutTransform>
+                <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+            </Button.LayoutTransform>
+        </Button>
+        <Button x:Name="btnCancelDeleteRecipes" Click="btnCancelDeleteRecipes_Click" Content="Cancel" Grid.Row="2" Style="{StaticResource btnRegular}" HorizontalAlignment="Center" Margin="250,15,0,5">
+            <Button.LayoutTransform>
+                <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+            </Button.LayoutTransform>
+        </Button>
+    </Grid>
+</Page>

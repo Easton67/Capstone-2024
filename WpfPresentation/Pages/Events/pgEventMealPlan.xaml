@@ -1,0 +1,117 @@
+﻿<Page x:Class="WpfPresentation.Pages.Events.pgEventMealPlan"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Events"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="pgEventMealPlan" Loaded="Page_Loaded" >
+
+    <!--
+    <summary>
+    Creator: Kirsten Stage
+    Created: 03/29/2024
+    Summary: Created the page for Event Meal Plans
+    Last Updated By: Kirsten Stage
+    Last Updated 03/29/2024
+    What was changed: Initial Creation
+    </summary>
+-->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="10"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="10"/>
+            <RowDefinition />
+            <RowDefinition Height="10"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="10"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Content="Event Meal Plan" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Grid.Row="0" FontSize="20" FontWeight="Bold" Padding="20 0 0 0" Background="LightGray"/>
+        <Label Content="Dear Valued Guests," VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" FontSize="14"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Content="We hope this message finds you well and filled with anticipation for an extraordinary dining experience." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" FontSize="14" Padding="0 2 0 0"/>
+            <Label Content="We are thrilled to announce an upcoming event that we are very excited for." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" FontSize="14" Padding="0 0 0 2"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Content="Our shelter is hosting a special event that is not to be missed. Whether you are a devoted food enthusiast" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" FontSize="14" Padding="0 2 0 0"/>
+            <Label Content="or simply looking for an exceptional dining experience, this event will exceed your expectations." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" FontSize="14" Padding="0 0 0 2"/>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="275"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Content="Event Name:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="0" FontSize="14" FontWeight="Bold" Padding="0 0 10 0"/>
+            <TextBox x:Name="txtName" Grid.Column="1" VerticalContentAlignment="Center" Margin="5 5 180 5" FontSize="14"/>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="275"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Content="Event Date:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="0" FontSize="14" FontWeight="Bold" Padding="0 0 10 0"/>
+            <TextBox x:Name="txtDate" Grid.Column="1" VerticalContentAlignment="Center" Margin="5 5 180 5" FontSize="14"/>
+        </Grid>
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="275"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Content="Event Time:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="0" FontSize="14" FontWeight="Bold" Padding="0 0 10 0"/>
+            <TextBox x:Name="txtTime" Grid.Column="1" VerticalContentAlignment="Center" Margin="5 5 180 5" FontSize="14"/>
+        </Grid>
+        <Grid Grid.Row="9">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Content="Prepare to embark on a culinary journey like no other. Our talented kitchen team has crafted a meticulously" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" FontSize="14" Padding="0 2 0 0"/>
+            <Label Content="curated menu, featuring a diverse array of options that showcase the finest ingredients and culinary techniques." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" FontSize="14" Padding="0 0 0 2"/>
+        </Grid>
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="275"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Content="Food:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="0" FontSize="14" FontWeight="Bold" Padding="0 0 10 0"/>
+            <TextBox x:Name="txtFood" Grid.Column="1" VerticalContentAlignment="Center" Margin="5 5 180 5" FontSize="14"/>
+        </Grid>
+        <Grid Grid.Row="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="275"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Content="Beverages:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="0" FontSize="14" FontWeight="Bold" Padding="0 0 10 0"/>
+            <TextBox x:Name="txtBeverages" Grid.Column="1" VerticalContentAlignment="Center" Margin="5 5 180 5" FontSize="14"/>
+        </Grid>
+        <Grid Grid.Row="14">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Content="Our talented culinary team is dedicated to creating options that are not only delicious" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" FontSize="14" Padding="0 2 0 0"/>
+            <Label Content="but also visually stunning. Expect a dining experience that engages all your senses." VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1" FontSize="14" Padding="0 0 0 2"/>
+        </Grid>
+        <Button x:Name="btnClose" Grid.Row="15" Width="100" Margin="10" FontSize="14" FontWeight="Bold" Click="btnClose_Click" >Close</Button>
+    </Grid>
+</Page>

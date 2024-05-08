@@ -1,0 +1,71 @@
+﻿<!--
+    Last Updated By: Matthew Baccam
+    Last Updated: 04/05/2024
+    What Was Changed: Added the main styling to this page
+    -->
+    <Page x:Class="WpfPresentation.Pages.Events.pgCreateEvent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Events"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="pgCreateEvent">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+  
+
+        
+
+        <Label Style="{StaticResource lblSubHeader}" Grid.Row="2" Grid.Column="0"
+           HorizontalAlignment="Right"
+           VerticalAlignment="Center" Margin="10"
+           FontWeight="DemiBold"
+           >EventName:</Label>
+
+        <Label Style="{StaticResource lblSubHeader}" Grid.Row="3" Grid.Column="0"
+           HorizontalAlignment="Right"
+           VerticalAlignment="Center" Margin="10"
+           FontWeight="DemiBold"
+           >Description:</Label>
+        
+        <Button x:Name="btnSubmit" Grid.Row="4" Grid.Column="0"
+           HorizontalAlignment="Right"
+           VerticalAlignment="Center" Margin="5"
+           Style="{StaticResource btnRegular}" Content="Submit"
+            Padding="5" Click="btnSubmit_Click_1" 
+            ></Button>
+        
+        <Button x:Name="btnCancel" Grid.Row="4" Grid.Column="1"
+   HorizontalAlignment="left"
+   VerticalAlignment="Center" Margin="5"
+   Style="{StaticResource btnRegular}" Content="Cancel"
+    Padding="5" Click="btnCancel_Click"  
+    ></Button>
+
+       
+
+        <TextBox Style="{StaticResource txtTheme}" Width="200" Height="35" x:Name="txtEventName" Grid.Row="2" Grid.Column="1" Margin="10 5 50 5" 
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
+
+        <TextBox Style="{StaticResource txtTheme}" Height="80" Width="450" x:Name="txtDescription" Grid.Row="3" Grid.Column="1" Margin="10 5 50 5" 
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"/>
+
+        <Label x:Name="lblErrorMessage" Grid.Row="5" Grid.Column="1"/>
+    </Grid>
+</Page>

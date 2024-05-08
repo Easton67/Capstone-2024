@@ -1,0 +1,101 @@
+﻿@*
+    Creator: Ethan McElree
+    Created: 3/27/2024
+    Summary: Created the Create action link for appointments
+    Last Updated By: Ethan McElree
+    Last Updated: 3/27/2024
+    What Was Changed: Initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/24/2024
+    What Was Changed: Changed the UI to match other pages
+*@
+@model DataObjects.AppointmentVM
+
+@{
+    ViewBag.Title = "Create an Appointment";
+}
+
+<div class="default-container">
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    Client:
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model._clientID, ViewBag.clientIds as IEnumerable<SelectListItem>,
+                                                                                    "Select Client", new { required = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model._clientID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    Location:
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model._locationName, ViewBag.locationNames as IEnumerable<SelectListItem>,
+                                                                                         "Select Location", new { required = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model._locationName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    Type:
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model._appointmentType, ViewBag.appointmentTypes as IEnumerable<SelectListItem>,
+                                                                                         "Select Type", new { required = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model._appointmentType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    Start Time:
+                    <div class="col-md-10">
+                        <input type="datetime-local"
+                               id="_appointmentStartTime"
+                               name="_appointmentStartTime"
+                               class="form-control" required />
+                        @Html.ValidationMessageFor(model => model._appointmentStartTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-4">
+                    End Time:
+                    <div class="col-md-10">
+                        <input type="datetime-local"
+                               id="_appointmentEndTime"
+                               name="_appointmentEndTime"
+                               class="form-control" required />
+                        @Html.ValidationMessageFor(model => model._appointmentEndTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group  mt-4">
+                    Employee:
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model._employeeID, ViewBag.employeeIds as IEnumerable<SelectListItem>,
+                                                                                         "Select Employee", new { required = "true", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model._employeeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn-generic" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="form-group mt-4">
+        <button class="btn-generic" onclick="window.location.href='@Url.Action("Index", "Appointments")'">
+            Back to Appointments
+        </button>
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

@@ -1,0 +1,74 @@
+﻿<!--
+    <Summary>
+    Creator: Mitchell Stirmel
+    Created: 02/01/2024
+    Summary: This is the page for maintenance inventory parts.
+    Last Updated By: Mitchell Stirmel
+    Last Updated: 02/20/2024
+    What Was Changed: Added Add, Edit, and Delete buttons.
+    Last Updated By: Matthew Baccam
+    Last Updated: 04/05/2024
+    What Was Changed: Added the main styling to this page
+    <Summary>
+-->
+<Page x:Class="WpfPresentation.Pages.Inventory.pgPartsInventory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Inventory"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      ShowsNavigationUI="False"
+      Title="pgPartsInventory">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="cboMaintenanceFilter" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="100 5 100 5" SelectionChanged="cboMaintenanceFilter_SelectionChanged"  ></ComboBox>
+            <Button x:Name="btnExit" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnExit_Click" Style="{StaticResource btnSmall}" >Exit</Button>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblTitle" Grid.Row="1" Style="{StaticResource lblHeader}">Maintenance Parts Inventory</Label>
+            <Label x:Name="lblUpdatedDate" Grid.Row="1" Style="{StaticResource lblHeader}" Grid.Column="1" >Updated: 00/00/0000</Label>
+        </Grid>
+
+        <DataGrid x:Name="dgdPartList" Grid.Row="2" CanUserSortColumns="True" AutoGenerateColumns="False" Style="{StaticResource dgDataGrid}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Part Name" Binding="{Binding _itemID}" Width="*"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding _category}" Width="*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding _quantity}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnAdd" Style="{StaticResource btnSmall}" Content="Add Part" Grid.Column="2" Click="btnAdd_Click" Margin="0,10,0,10"></Button>
+            <Button x:Name="btnEdit" Style="{StaticResource btnSmall}" Content="Edit" Grid.Column="4" Margin="0,10,0,10"></Button>
+            <Button x:Name="btnDelete" Style="{StaticResource btnSmall}" Content="Delete" Grid.Column="6" Margin="0,10,0,10" Click="btnDelete_Click"></Button>
+        </Grid>
+    </Grid>
+</Page>

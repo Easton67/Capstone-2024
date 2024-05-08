@@ -1,0 +1,61 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 4/15/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+*@
+@model IEnumerable<DataObjects.ScheduleVM>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "Schedule";
+}
+
+<a class="my-4 btn-grey br-30 p-3 grow" href="@Url.Action("Create", "Schedule")">
+    Create Schedule
+</a>
+<table class="table mt-4">
+    <tr class="bg-dark text-white">
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduleWeek)
+        </th>
+        <th>
+            Timeline
+        </th>
+        <th>
+            Start and End Date
+        </th>
+        <th>Options</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="background: #CFCECD!important" class="text-dark">
+            <td>
+                @item.ScheduleWeek
+            </td>
+            <td>
+                @item.ScheduleMonth,  @item.ScheduleYear
+            </td>
+            <td>
+                @item.ScheduleStartDate.ToString("d") - @item.ScheduleEndDate.ToString("d")
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="text-decoration-none text-dark" href="@Url.Action("Edit", "Schedule", new {  id = item.ScheduleID })">
+                        Edit
+                    </a>
+                    <a class="text-decoration-none text-dark" href="@Url.Action("Delete", "Schedule", new {  id = item.ScheduleID })">
+                        Delete
+                    </a>
+                }
+                <a class="text-decoration-none text-dark" href="@Url.Action("Details", "Schedule", new {  id = item.ScheduleID })">
+                    Details
+                </a>
+            </td>
+        </tr>
+    }
+</table>

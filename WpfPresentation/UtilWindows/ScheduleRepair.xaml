@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfPresentation.UtilWindows.ScheduleRepair"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation.UtilWindows"
+        mc:Ignorable="d"
+        Title="Schedule Repair" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblScheduleRepair" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center"></Label>
+        <DatePicker x:Name="repairDatePicker" Grid.Row="1" Width="200" Grid.ColumnSpan="4"></DatePicker>
+        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="26" VerticalAlignment="Top" FontSize="12" VerticalContentAlignment="Top">Assign Technician</Label>
+        <ComboBox x:Name="cmbEmployees" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Bottom" Margin="0,0,0,5"></ComboBox>
+        <Button Style="{StaticResource btnSmall}" x:Name="btnCancel" Grid.Row="3" Grid.Column="2" Content="Cancel" Height="20" Width="90" FontSize="10" Click="btnCancel_Click"></Button>
+        <Button Style="{StaticResource btnSmall}" x:Name="btnScheduleRepair" Grid.Row="3" Grid.Column="3" Content="Schedule Repair" Height="20" Width="90" FontSize="10" Click="btnScheduleRepair_Click"  ></Button>
+
+    </Grid>
+</Window>

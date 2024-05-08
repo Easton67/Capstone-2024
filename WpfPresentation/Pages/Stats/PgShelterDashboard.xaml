@@ -1,0 +1,244 @@
+﻿<Page x:Class="WpfPresentation.Pages.Stats.PgShelterDashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Stats"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="PgShelterDashboard" Background="Transparent">
+    <Page.Resources>
+        <Style TargetType="Label" x:Key="EOTMLabel">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="LightGray" 
+                Background="DimGray" BorderThickness="2" 
+                Margin="10" Grid.Row="1" CornerRadius="12"
+                Grid.Column="1">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.75" BlurRadius="10" Direction="270" ShadowDepth="5" />
+            </Border.Effect>
+            <StackPanel Background="Transparent">
+                <Label FontSize="17"
+                       FontWeight="Bold"
+                       Foreground="SkyBlue"
+                       HorizontalAlignment="Center">
+                    Total User Count
+                </Label>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label x:Name="lblTotalUsers"
+                            Width="80" Height="40" HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom" FontSize="17" FontWeight="SemiBold"
+                           HorizontalContentAlignment="Center" 
+                           VerticalContentAlignment="Center"
+                           Foreground="White">
+                        1,829
+                    </Label>
+                    <Image Source="/Images/Users.png" Height="70"
+               Width="75" Margin="0,0,20,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="LightGray" 
+                Background="DimGray" BorderThickness="2" 
+                Margin="10" Grid.Row="1" CornerRadius="12"
+                Grid.Column="2">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.75" BlurRadius="10" Direction="270" ShadowDepth="5" />
+            </Border.Effect>
+            <StackPanel Background="Transparent">
+                <Label FontSize="17"
+                       FontWeight="Bold"
+                       Foreground="SkyBlue"
+                       HorizontalAlignment="Center">
+                    Total Inventory Count
+                </Label>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label x:Name="lblTotalInventory"
+                            Width="80" Height="40" HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom" FontSize="17" FontWeight="SemiBold"
+                           HorizontalContentAlignment="Center" 
+                           VerticalContentAlignment="Center"
+                           Foreground="White">
+                        6,283
+                    </Label>
+                    <Image Source="/Images/Boxes.png" Height="70"
+               Width="75" Margin="0,0,20,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="LightGray" 
+                Background="DimGray" BorderThickness="2" 
+                Margin="10" Grid.Row="1" CornerRadius="12"
+                Grid.Column="3">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.75" BlurRadius="10" Direction="270" ShadowDepth="5" />
+            </Border.Effect>
+            <StackPanel Background="Transparent">
+                <Label FontSize="17"
+                       FontWeight="Bold"
+                       Foreground="SkyBlue"
+                       HorizontalAlignment="Center">
+                    Current Vendor Count
+                </Label>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label x:Name="lblVendorCount"
+                            Width="80" Height="40" HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom" FontSize="17" FontWeight="SemiBold"
+                           HorizontalContentAlignment="Center" 
+                           VerticalContentAlignment="Center"
+                           Foreground="White">
+                        22
+                    </Label>
+                    <Image Source="/Images/Vendors.png" Height="70"
+               Width="75" Margin="0,0,20,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="LightGray" 
+                Background="DimGray" BorderThickness="2" 
+                Margin="10" Grid.Row="2" CornerRadius="12"
+                Grid.Column="1" Grid.ColumnSpan="2">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.75" BlurRadius="10" Direction="270" ShadowDepth="5" />
+            </Border.Effect>
+            <StackPanel Background="Transparent">
+                <Label FontSize="25" Foreground="White"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center">
+                    Donation Revenue
+                </Label>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label FontSize="17" FontWeight="SemiBold"
+                            Foreground="White" 
+                            HorizontalAlignment="Left"
+                            Margin="30,2,0,0">
+                        Profit:
+                    </Label>
+                    <Label FontSize="19" FontWeight="Bold"
+                          Foreground="LimeGreen" x:Name="lblProfit">
+                        $1,285
+                    </Label>
+
+                    <Label FontSize="17" FontWeight="SemiBold"
+                            Foreground="White" 
+                            HorizontalAlignment="Right"
+                            Margin="30,2,0,0">
+                        Donation Count:
+                    </Label>
+                    <Label FontSize="19" FontWeight="Bold"
+                          Foreground="SkyBlue" x:Name="lblDonationCount">
+                        13
+                    </Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Grid>
+                        <Canvas x:Name="cvsDonations" Width="450" Height="250" Background="LightGray">
+                            <!-- X -->
+                            <Line X1="20" Y1="220" X2="430" Y2="220" Stroke="Black" StrokeThickness="1" />
+                            <TextBlock Text="Last 3 Months" Canvas.Left="188" Canvas.Top="225"/>
+
+                            <!-- Y -->
+                            <Line X1="20" Y1="220" X2="20" Y2="20" Stroke="Black" StrokeThickness="1" />
+                            <TextBlock Text="$0" Canvas.Left="3" Canvas.Top="220" />
+                            <TextBlock x:Name="tblMaxDonation" Text="$1,000" Canvas.Left="3" Canvas.Top="5" />
+                        </Canvas>
+                        <Canvas Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0">
+                            <Rectangle Width="20" Height="10" Fill="Blue" Canvas.Left="45" Canvas.Top="5" />
+                            <TextBlock x:Name="lblMonthOne" Text="01/22" Canvas.Left="70" Canvas.Top="2" />
+                            <Rectangle Width="20" Height="10" Fill="Red" Canvas.Left="45" Canvas.Top="22" />
+                            <TextBlock x:Name="lblMonthTwo" Text="02/22" Canvas.Left="70" Canvas.Top="18" />
+                            <Rectangle Width="20" Height="10" Fill="Orange" Canvas.Left="45" Canvas.Top="38" />
+                            <TextBlock x:Name="lblMonthThree" Text="03/22" Canvas.Left="70" Canvas.Top="34" />
+                        </Canvas>
+                    </Grid>
+
+                </StackPanel>
+            </StackPanel>
+
+        </Border>
+
+        <Border Grid.Column="3" Grid.Row="2" CornerRadius="12"
+        Background="DimGray"
+        Margin="10" BorderBrush="LightGray" BorderThickness="2">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.75" BlurRadius="10" Direction="270" ShadowDepth="5" />
+            </Border.Effect>
+            <StackPanel Background="Transparent">
+                <Label FontSize="18" Foreground="White"
+               FontWeight="SemiBold" Margin="0,5,0,0"
+               HorizontalAlignment="Center">
+                    Company Owner Contact
+                </Label>
+
+                <Border BorderBrush="LightGray" 
+                    Background="gray" BorderThickness="2" 
+                    Margin="5,15,5,0" CornerRadius="8">
+                    <StackPanel Background="Transparent">
+                        <Label FontSize="18" Foreground="SkyBlue"
+                                FontWeight="SemiBold"
+                                HorizontalAlignment="Center"
+                                x:Name="lblEmployeeOneTitle">
+                            CEO
+                        </Label>
+                        <StackPanel Margin="5">
+                            <Image>
+
+                            </Image>
+                            <Label x:Name="lblEmployeeOneName" Style="{StaticResource EOTMLabel}" Content="Name: Samantha Heart"/>
+                            <Label x:Name="lblEmployeeOneNumber" Style="{StaticResource EOTMLabel}" Content="Phone Number: 999-888-4444"/>
+                            <Label x:Name="lblEmployeeOneRole" Style="{StaticResource EOTMLabel}" Content="Role: CEO, Inventory Manager"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="LightGray"
+                    Background="gray" BorderThickness="2" 
+                    Margin="5,25,5,0" CornerRadius="8">
+                    <StackPanel Background="Transparent">
+                        <Label FontSize="18" Foreground="SkyBlue"
+                            FontWeight="SemiBold"
+                            HorizontalAlignment="Center"
+                            x:Name="lblEmployeeTwoTitle">
+                            Security
+                        </Label>
+                        <StackPanel Margin="5">
+                            <Label x:Name="lblEmployeeTwoName" Style="{StaticResource EOTMLabel}" Content="Name: Joshua Richards"/>
+                            <Label x:Name="lblEmployeeTwoNumber" Style="{StaticResource EOTMLabel}" Content="Phone Number: 999-888-4444"/>
+                            <Label x:Name="lblEmployeeTwoRole" Style="{StaticResource EOTMLabel}" Content="Role: Site Security"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

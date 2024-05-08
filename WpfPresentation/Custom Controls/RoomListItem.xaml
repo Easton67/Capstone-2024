@@ -1,0 +1,34 @@
+﻿<!-- 
+    <Summary>
+    Creator: Jared Harvey
+    Created: 01/29/2024
+    Summary: This User Control is used to fill the ItemsControls on the HousekeepingPage. 
+    Using this UserControl, it makes it so there is less copy-pasting involved.
+    Last Updated By: Jared Harvey
+    Last Updated: 01/29/2024
+    What Was Changed: Initial Creation
+    <Summary>
+-->
+    
+<UserControl x:Class="WpfPresentation.Custom_Controls.RoomListItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfPresentation.Custom_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="500">
+    <Grid Background="DarkGray" Margin="0,20,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,10,10,0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="txtSentBy" Text="{Binding RoomNumber}" Margin="5,0" FontSize="16"/>
+                <TextBlock x:Name="txtSentAt" Text="{Binding Status}" Margin="5,0" FontSize="10"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

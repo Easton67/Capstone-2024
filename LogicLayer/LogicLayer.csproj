@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props')" />
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5184CB19-2E4D-48F3-973B-A5DC4918FF70}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LogicLayer</RootNamespace>
+    <AssemblyName>LogicLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeCoverage.17.8.0\lib\net462\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppointmentManager.cs" />
+    <Compile Include="ConfiscatedItemManager.cs" />
+    <Compile Include="DonationCalculations.cs" />
+    <Compile Include="EventMealPlanManager.cs" />
+    <Compile Include="Captcha.cs" />
+    <Compile Include="ClientPriorityManager.cs" />
+    <Compile Include="FundraisingEventManager.cs" />
+    <Compile Include="HiddenIncidentManager.cs" />
+    <Compile Include="HouseKeepingManager.cs" />
+    <Compile Include="HousekeepingTaskManager.cs" />
+    <Compile Include="IAppointmentManager.cs" />
+    <Compile Include="IClientPriorityManager.cs" />
+    <Compile Include="IConfiscatedItemManager.cs" />
+    <Compile Include="IDepartmentManager.cs" />
+    <Compile Include="IEventMealPlanManager.cs" />
+    <Compile Include="IFundraisingEventManager.cs" />
+    <Compile Include="IHiddenIncidentManager.cs" />
+    <Compile Include="IHouseKeepingManager.cs" />
+    <Compile Include="IHousekeepingTaskManager.cs" />
+    <Compile Include="DepartmentManager.cs" />
+    <Compile Include="DonationManager.cs" />
+    <Compile Include="IDonationManager.cs" />
+    <Compile Include="IIncidentManager.cs" />
+    <Compile Include="IItemManager.cs" />
+    <Compile Include="ILocationManager.cs" />
+    <Compile Include="IMembershipApplicationsManager.cs" />
+    <Compile Include="IMessageManager.cs" />
+    <Compile Include="IReminderManager.cs" />
+    <Compile Include="IStayManager.cs" />
+    <Compile Include="IKitchenInventoryItemManager.cs" />
+    <Compile Include="IncidentManager.cs" />
+    <Compile Include="IScheduleManager.cs" />
+    <Compile Include="ItemManager.cs" />
+    <Compile Include="EventManager.cs" />
+    <Compile Include="IPartsInventoryManager.cs" />
+    <Compile Include="ITransportationOrderManager.cs" />
+    <Compile Include="IUserManager.cs" />
+    <Compile Include="IVisitManager.cs" />
+    <Compile Include="IVolunteerApplicationManager.cs" />
+    <Compile Include="IVolunteerManager.cs" />
+    <Compile Include="IVolunteerQuestionnaireManager.cs" />
+    <Compile Include="IVolunteerSkillManager.cs" />
+    <Compile Include="IWeekFoodMenuManager.cs" />
+    <Compile Include="LocationManager.cs" />
+    <Compile Include="MembershipApplicationsManager.cs" />
+    <Compile Include="ReminderManager.cs" />
+    <Compile Include="ScheduleManager.cs" />
+    <Compile Include="LoginManager.cs" />
+    <Compile Include="LoginManagerInterFace.cs" />
+    <Compile Include="MessageManager.cs" />
+    <Compile Include="TransportationOrderManager.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="IRecipeIngredientsManager.cs" />
+    <Compile Include="IRecipeManager.cs" />
+    <Compile Include="KitchenInventoryItemManager.cs" />
+    <Compile Include="RecipeIngredientsManager.cs" />
+    <Compile Include="RecipeManager.cs" />
+    <Compile Include="IVendorDataManager.cs" />
+    <Compile Include="StayManager.cs" />
+    <Compile Include="VendorDataManager.cs" />
+    <Compile Include="IResourcesNeededManager.cs" />
+    <Compile Include="ResourcesNeededManager.cs" />
+    <Compile Include="VisitManager.cs" />
+    <Compile Include="VolunteerApplicationManager.cs" />
+    <Compile Include="VolunteerManager.cs" />
+    <Compile Include="VolunteerQuestionnaireManager.cs" />
+    <Compile Include="VolunteerSkillManager.cs" />
+    <Compile Include="WeekFoodMenuManager.cs" />
+    <Compile Include="IEventManager.cs" />
+    <Compile Include="IMaintenanceRequestManager.cs" />
+    <Compile Include="PartsInventoryManager.cs" />
+    <Compile Include="MaintenanceRequestManager.cs" />
+    <Compile Include="IRoomManager.cs" />
+    <Compile Include="IShiftManager.cs" />
+    <Compile Include="RoomManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShiftManager.cs" />
+    <Compile Include="HoursOfOperationManager.cs" />
+    <Compile Include="IHoursOfOperationManager.cs" />
+    <Compile Include="ILocation.cs" />
+    <Compile Include="MainManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessFakes\DataAccessFakes.csproj">
+      <Project>{c7bf19c3-a316-4353-9a77-214ddba2da3d}</Project>
+      <Name>DataAccessFakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj">
+      <Project>{aa78f6e3-b628-4e56-adc5-b3f78358b8f3}</Project>
+      <Name>DataAccessInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{2d8ee92e-5c95-4fda-a619-59d9472f9fc4}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataObjects\DataObjects.csproj">
+      <Project>{2e8dc648-5b97-4297-b7c4-61cb0aa04f3c}</Project>
+      <Name>DataObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets')" />
+</Project>

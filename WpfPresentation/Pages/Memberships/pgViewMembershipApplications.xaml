@@ -1,0 +1,64 @@
+﻿<Page x:Class="WpfPresentation.Pages.Memberships.pgViewMembershipApplications"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Memberships"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pgViewMembershipApplications">
+    <!--
+<Summary>
+Creator: Donald Winchester
+Created: 04/16/2024
+Summary: This is the page for viewing membership applications.
+Last Updated By: Donald Winchester
+Last Updated: 04/16/2024
+What Was Changed: Initial Creation
+<Summary>
+-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label x:Name="lblTitle" Style="{StaticResource lblHeader}" Grid.ColumnSpan="2" Margin="200,0,200,0">Membership Applications</Label>
+
+
+        </Grid>
+
+        <DataGrid x:Name="dgdMembershipApplications" Grid.Row="2" CanUserSortColumns="True" AutoGenerateColumns="False" Style="{StaticResource dgDataGrid}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="First Name" Binding="{Binding _firstName}" Width="*"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding _lastName}" Width="*"/>
+                <DataGridTextColumn Header="D.O.B." Binding="{Binding _dateOfBirth}" Width="*"/>
+                <DataGridTextColumn Header="Sex" Binding="{Binding _sex}" Width="*"/>
+                <DataGridTextColumn Header="SSN" Binding="{Binding _ssn}" Width="*"/>
+                <DataGridTextColumn Header="Phone" Binding="{Binding _phoneNumber}" Width="*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding _emailAddress}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding _status}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</Page>

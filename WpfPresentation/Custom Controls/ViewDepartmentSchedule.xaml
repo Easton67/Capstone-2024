@@ -1,0 +1,231 @@
+<UserControl
+    x:Class="WpfPresentation.Custom_Controls.ViewDepartmentSchedule"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfPresentation.Custom_Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    KeyDown="UserControl_KeyDown"
+    mc:Ignorable="d">
+    <!--
+    <summary>
+    Creator:            Jared Harvey
+    Created:            02/07/2024
+    Summary:            Creation of ViewDepartmentSchedule method
+    Last Updated By:    Liam Easton
+    Last Updated:       02/13/2024
+    What Was Changed:   Added custom styles
+                        created custom buttons for the week of:
+    </summary>
+    -->
+    <Grid Background="Transparent">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Label
+                            Margin="0,0,10,0"
+                            Content="Week Of:"
+                            Style="{StaticResource lblSubHeader}" />
+                        <Grid
+                            Width="250"
+                            Height="26"
+                            Background="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="26" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="26" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                x:Name="lblWeekRange"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15"
+                                FontWeight="DemiBold" />
+                            <Button
+                                x:Name="btnLeft"
+                                Padding="3,2,5,2"
+                                Background="{StaticResource clrPrimary}"
+                                BorderThickness="0,0,0,0"
+                                Click="btnLeft_Click">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Button.Resources>
+                                <Image Source="/Images/left-arrow.png" />
+                            </Button>
+                            <Button
+                                x:Name="btnRight"
+                                Grid.Column="2"
+                                Padding="5,2,3,2"
+                                Background="{StaticResource clrPrimary}"
+                                BorderThickness="0,0,0,0"
+                                Click="btnRight_Click">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Button.Resources>
+                                <Image Source="/Images/right-arrow.png" />
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Label
+                            x:Name="lblDepartment"
+                            Margin="0,0,10,0"
+                            Content="Department:"
+                            Style="{StaticResource lblSubHeader}" />
+                        <ComboBox
+                            x:Name="cbDepartmentSelector"
+                            Grid.Column="1"
+                            Width="200"
+                            VerticalAlignment="Center"
+                            SelectionChanged="cbDepartmentSelector_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DepartmentName}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                <Button
+                    x:Name="btnAddShifts"
+                    Grid.Row="1"
+                    Width="100"
+                    Margin="3,0,24,0"
+                    Padding="1,1,1,1"
+                    HorizontalAlignment="Right"
+                    Background="{StaticResource clrPrimary}"
+                    BorderThickness="0,0,0,0"
+                    Click="btnAddShifts_Click"
+                    Content="Add Shifts">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="2" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Grid Grid.Row="2" ToolTip="Right click to add, edit and remove shifts">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox
+                        x:Name="gbSunday"
+                        Margin="5"
+                        Header="Sunday">
+                        <ItemsControl x:Name="icSunday">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ShiftListItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox
+                        x:Name="gbMonday"
+                        Grid.Column="1"
+                        Margin="5"
+                        Header="Monday">
+                        <ItemsControl x:Name="icMonday">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ShiftListItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox
+                        x:Name="gbTuesday"
+                        Grid.Column="2"
+                        Margin="5"
+                        Header="Tuesday">
+                        <ItemsControl x:Name="icTuesday">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ShiftListItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox
+                        x:Name="gbWednesday"
+                        Grid.Column="3"
+                        Margin="5"
+                        Header="Wednesday">
+                        <ItemsControl x:Name="icWednesday">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ShiftListItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox
+                        x:Name="gbThursday"
+                        Grid.Column="4"
+                        Margin="5"
+                        Header="Thursday">
+                        <ItemsControl x:Name="icThursday">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ShiftListItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox
+                        x:Name="gbFriday"
+                        Grid.Column="5"
+                        Margin="5"
+                        Header="Friday">
+                        <ItemsControl x:Name="icFriday">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ShiftListItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                    <GroupBox
+                        x:Name="gbSaturday"
+                        Grid.Column="6"
+                        Margin="5"
+                        Header="Saturday">
+                        <ItemsControl x:Name="icSaturday">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ShiftListItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,60 @@
+﻿<!--
+    <Summary>
+    Creator: Anthony Talamantes
+    Created: 02/07/2024
+    Summary: This is the page for a list of vendors.
+    Last Updated By: Anthony Talamantes
+    Last Updated: 02/07/2024
+    What Was Changed: Initial Creation
+    Last Updated By: Ethan McElree
+    Last Updated: 03/18/2024
+    What Was Changed: Added a click handler for the Edit Item button.
+    <Summary>
+-->
+<Page x:Class="WpfPresentation.Pages.Vendors.pgVendors"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Vendors"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="Vendors" Background="LightGray" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="DarkGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Style="{StaticResource lblHeader}" x:Name="lblVendor" Grid.Column="1" Content="Vendors" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="391*"/>
+                <ColumnDefinition Width="409*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Style="{StaticResource dgDataGrid}" x:Name="datVendor" SelectionMode="Single" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" Loaded="datVendor_Loaded" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Margin="40,0,40,0"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource btnMedium}" x:Name="btnAddItem" Grid.Column="0" Content="Add Item"  HorizontalAlignment="Right" Click="btnAddItem_Click"  />
+            <Button Style="{StaticResource btnMedium}" x:Name="btnEditItem" Grid.Column="1" Content="Edit Item" HorizontalAlignment="Center"  Click="btnEditItem_Click"/>
+            <Button Style="{StaticResource btnMedium}" x:Name="btnDeleteItem" Grid.Column="2" Content="Delete Item" HorizontalAlignment="Left" Click="btnDeleteItem_Click"/>
+        </Grid>
+    </Grid>
+</Page>
+

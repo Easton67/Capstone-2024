@@ -1,0 +1,57 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/10/2024
+    Summary: Creation of the login actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/10/2024
+    What Was Changed: initial creation
+*@
+@using MvcPresentation.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    ViewBag.PageType = "NoHero";
+}
+
+<main id="sign-in-container" aria-labelledby="title" class="bg-dark bg-opacity-50 d-flex justify-content-center">
+    <div class=" w-50 pt-5 box h-75">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+            <div class="d-flex flex-column align-items-center pt-5">
+                <h1 class="text-center pt-5 fw-bold text-white">@ViewBag.Title</h1>
+                <div class="col-md-12 text-center">
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger", @style="color: red !important" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger mb-4 fw-bold", @style = "color: red !important" })
+                    <br />
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-inputs text-center", placeholder = "Email" })
+                </div>
+                <div class="mb-3 col-md-12 text-center">
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger fw-bold fw-700", @style = "color: red !important" })
+                    <br />
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-inputs text-center", placeholder = "Password" })
+                </div>
+                <div class="mb-3 form-check text-center text-white">
+                    @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input mt-3" })
+                    @Html.LabelFor(m => m.RememberMe, new { @class = "form-check-label" })
+                </div>
+                <br />
+                <div class="mb-3 col-md-12 text-center mb-5">
+                    <input type="submit" value="@ViewBag.Title" class="btn btn-outline-light px-lg-5 login-button" />
+                </div>
+                <hr class="mb-3 hr-login" />
+                <p>
+                    @Html.ActionLink("Forgot Password?", "ForgotPassword", null, new { @class = "mx-5 login-footer-links" })
+                    @Html.ActionLink("Register", "Register", null, new { @class = "mx-5 login-footer-links" })
+                </p>
+            </div>
+            }
+        </section>
+    </div>
+</main>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

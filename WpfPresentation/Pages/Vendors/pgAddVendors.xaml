@@ -1,0 +1,47 @@
+﻿<!--
+        /// <summary>
+        ///Creator:            Mitchell Stirmel
+        ///Created:            02/13/2024
+        ///Summary:            Page that allows the user to add a new vendor.
+        ///Last Updated By:    Mitchell Stirmel
+        ///Last Updated:       02/13/2024
+        ///What Was Changed:   Initial Creation
+        Last Updated By: Matthew Baccam
+        Last Updated: 04/05/2024
+        What Was Changed: Added the main styling to this page
+        /// </summary>    
+-->
+    <Page x:Class="WpfPresentation.Pages.Vendors.pgAddVendors"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Vendors"
+      mc:Ignorable="d" 
+      d:DesignHeight="445" d:DesignWidth="700"
+      Title="pgAddVendors">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="lblTitle" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Style="{StaticResource lblHeader}">Add Vendor</Label>
+
+        <TextBox Style="{StaticResource txtTheme}" x:Name="tbxVendorName"  Grid.Row="1" Margin="180 10 180 10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="18" GotFocus="tbxVendorName_GotFocus" LostFocus="tbxVendorName_LostFocus">Vendor Company Name</TextBox>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="tbxVendorContactName" Grid.Row="2" Margin="180 10 180 10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="18" GotFocus="tbxVendorContactName_GotFocus" LostFocus="tbxVendorContactName_LostFocus">Vendor Contact Name</TextBox>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="tbxVendorAddr"  Grid.Row="3" Margin="180 10 180 10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="18" GotFocus="tbxVendorAddr_GotFocus" LostFocus="tbxVendorAddr_LostFocus">Vendor Address</TextBox>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="tbxVendorPhone" Grid.Row="4" Margin="180 10 180 10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="18" GotFocus="tbxVendorPhone_GotFocus" LostFocus="tbxVendorPhone_LostFocus">Vendor Phone</TextBox>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="tbxVendorEmail" Grid.Row="5" Margin="180 10 180 10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="18" GotFocus="tbxVendorEmail_GotFocus" LostFocus="tbxVendorEmail_LostFocus">Vendor Email</TextBox>
+
+        <Button x:Name="btnAddVendor" Grid.Row="6" Style="{StaticResource btnLarge}" Margin="250 10 250 40" FontSize="18" Click="btnAddVendor_Click">Add Vendor</Button>
+        
+        
+    </Grid>
+</Page>

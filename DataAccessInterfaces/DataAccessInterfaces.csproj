@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props')" />
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA78F6E3-B628-4E56-ADC5-B3F78358B8F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccessInterfaces</RootNamespace>
+    <AssemblyName>DataAccessInterfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeCoverage.17.8.0\lib\net462\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IAppointmentAccessor.cs" />
+    <Compile Include="IClientPriorityAccessor.cs" />
+    <Compile Include="IConfiscatedItemAccessor.cs" />
+    <Compile Include="IDonationsAccessor.cs" />
+    <Compile Include="IDepartmentAccessor.cs" />
+    <Compile Include="IEventMealPlanAccessor.cs" />
+    <Compile Include="IFundraisingEventAccessor.cs" />
+    <Compile Include="IHiddenIncidentAccessor.cs" />
+    <Compile Include="IHouseKeepingAccessor.cs" />
+    <Compile Include="IHousekeepingTaskAccessor.cs" />
+    <Compile Include="IIncidentAccessor.cs" />
+    <Compile Include="IItemAccessor.cs" />
+    <Compile Include="IEventAccessor.cs" />
+    <Compile Include="IKitchenInventoryItemAccessor.cs" />
+    <Compile Include="ILocationAccessor.cs" />
+    <Compile Include="IMembershipApplicationsAccessor.cs" />
+    <Compile Include="IPartsInventoryAccessor.cs" />
+    <Compile Include="IMaintenanceAccessor.cs" />
+    <Compile Include="IRecipeAccessor.cs" />
+    <Compile Include="IRecipeIngredientsAccessor.cs" />
+    <Compile Include="IReminderAccessor.cs" />
+    <Compile Include="IResourcesNeededAccessor.cs" />
+    <Compile Include="IRoomAccessor.cs" />
+    <Compile Include="IHoursOfOperationAccessor.cs" />
+    <Compile Include="IScheduleAccessor.cs" />
+    <Compile Include="ITransportationOrderAccessor.cs" />
+    <Compile Include="IUserAccessor.cs" />
+    <Compile Include="IVendorDataAccess.cs" />
+    <Compile Include="IVisitAccessor.cs" />
+    <Compile Include="IVolunteerAccessor.cs" />
+    <Compile Include="IVolunteerApplicationAccessor.cs" />
+    <Compile Include="IVolunteerQuestionnaireAccessor.cs" />
+    <Compile Include="IVolunteerSkillAccessor.cs" />
+    <Compile Include="IWeekFoodMenuAccessor.cs" />
+    <Compile Include="IStayAccessor.cs" />
+    <Compile Include="IShiftAccessor.cs" />
+    <Compile Include="LoginAccessorInterFace.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataObjects\DataObjects.csproj">
+      <Project>{2e8dc648-5b97-4297-b7c4-61cb0aa04f3c}</Project>
+      <Name>DataObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets')" />
+</Project>

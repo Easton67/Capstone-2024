@@ -1,0 +1,55 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the details actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: initial creation
+*@
+@model DataObjects.Donation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="default-container">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DonationName):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonationDate):
+        </dt>
+
+        <dd>
+            @Model.DonationDate.ToShortDateString()
+        </dd>
+
+        <dd>
+            <button class="my-4 btn-grey br-30 p-3 grow">
+                <a class="text-decoration-none text-dark" onclick="window.location.href='@Url.Action("Edit", "Donations", new { id = Model.DonationID })'">
+                    Edit Donation
+                </a>
+            </button>
+            <button class="my-4 btn-grey br-30 p-3 grow">
+                <a class="text-decoration-none text-dark" onclick="window.location.href='@Url.Action("Index", "Donations")'">
+                    All Donations
+                </a>
+            </button>
+        </dd>
+    </dl>
+</div>
+

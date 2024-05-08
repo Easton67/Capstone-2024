@@ -1,0 +1,77 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/10/2024
+    Summary: Creation of the register actionlink
+    Last Updated By: Tyler Barz
+    Last Updated: 04/02/2024
+    What Was Changed: Added reCAPTCHA
+*@
+@model MvcPresentation.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    ViewBag.PageType = "NoHero";
+}
+
+<main aria-labelledby="title" class="bg-dark bg-opacity-50 register-container d-flex justify-content-center h-100">
+    <div class="pt-2 box">
+        <section id="loginForm">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger", @style = "color: red !important" })
+            <div class="d-flex flex-column align-items-center pt-1">
+                <h1 class="text-center pt-1 fw-bold text-white">@ViewBag.Title</h1>
+                <div class="col-md-12 text-center">
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger mb-4 fw-bold", @style = "color: red !important" })
+                    <br />
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-inputs text-center", placeholder = "Email" })
+                </div>
+                <div class="col-md-12 text-center">
+                    <br />
+                    @Html.ValidationMessageFor(m => m.GivenName, "", new { @class = "text-danger mb-4 fw-bold", @style = "color: red !important" })
+                    <br />
+                    @Html.TextBoxFor(m => m.GivenName, new { @class = "form-control form-inputs text-center", placeholder = "First Name" })
+                </div>
+                <div class="col-md-12 text-center">
+                    <br />
+                    @Html.ValidationMessageFor(m => m.FamilyName, "", new { @class = "text-danger mb-4 fw-bold", @style = "color: red !important" })
+                    <br />
+                    @Html.TextBoxFor(m => m.FamilyName, new { @class = "form-control form-inputs text-center", placeholder = "Last Name" })
+                </div>
+                <div class="mb-3 col-md-12 text-center">
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger fw-bold fw-700", @style = "color: red !important" })
+                    <br />
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control form-inputs text-center", placeholder = "Password" })
+                </div>
+                <div class="mb-3 col-md-12 text-center">
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger fw-bold", @style = "color: red !important" })
+                    <br />
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control form-inputs text-center", placeholder = "Confirm Password" })
+                </div>
+                <br />
+                @* Obviously should be protected, however the database script is already public, oh well. *@
+                @if (!string.IsNullOrEmpty(ViewData["CaptchaError"] as string))
+                {
+                    <div class="col-md-12 text-center mb-3">
+                        <span class="text-danger fw-bold">@ViewData["CaptchaError"]</span>
+                    </div>
+                }
+                <div class="g-recaptcha" data-sitekey="@LogicLayer.Captcha.SiteKey"></div>
+                <div class="col-md-12 text-center mb-5 pt-5">
+                    <input type="submit" value="@ViewBag.Title" class="btn btn-outline-light px-lg-5 login-button" />
+                </div>
+                <hr class="mb-3 hr-login" />
+                <p>
+                    @Html.ActionLink("Forgot Password?", "ForgotPassword", null, new { @class = "mx-5 login-footer-links" })
+                    @Html.ActionLink("Login", "Login", null, new { @class = "mx-5 login-footer-links" })
+                </p>
+            </div>
+            }
+        </section>
+    </div>
+</main>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,581 @@
+﻿<!--
+    <summary>
+    Creator:            Liam Easton
+    Created:            02/02/2024
+    Summary:            Creation of the style sheet
+    Last Updated By:    Liam Easton
+    Last Updated:       02/02/2024
+    What Was Changed:   Creation of the style sheet
+    Last Updated By: Matthew Baccam
+    Last Updated: 04/05/2024
+    What Was Changed: Added styling to each area so its just the general "theme" so we dont have to use a fixed heigh and width
+    </summary>
+-->
+<Application x:Class="WpfPresentation.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfPresentation"
+             StartupUri="LoginWindow.xaml">
+    <Application.Resources>
+        <!--
+            <summary>
+            Creator:            Liam Easton
+            Created:            02/02/2024
+            Summary:            Creation of the Colors
+            Last Updated By:    Liam Easton
+            Last Updated:       02/02/2024
+            What Was Changed:   Creation of the Colors
+            </summary>
+        -->
+        <!--#region Colors-->
+        <SolidColorBrush x:Key="clrPrimary" Color="#4EA5D9" />
+        <SolidColorBrush x:Key="clrPrimarySelected" Color="#6FB9FF" />
+        <SolidColorBrush x:Key="clrDark" Color="#FF000000" />
+        <SolidColorBrush x:Key="clrLight" Color="#FFFFFFFF" />
+        <SolidColorBrush x:Key="clrInvalid" Color="#FFEB2C1A" />
+        <!--#endregion Colors-->
+		
+        <!--
+            <summary>
+            Creator:            Liam Easton
+            Created:            02/03/2024
+            Summary:            Creation of the WindowStyles Resources
+            Last Updated By:    Liam Easton
+            Last Updated:       02/03/2024
+            What Was Changed:   Creation of the WindowStyles Resources
+            </summary>
+        -->
+        <!--#region WindowStyles-->
+        <Style x:Key="widRegular" TargetType="Window">
+            <Setter Property="Height" Value="575" />
+            <Setter Property="Width" Value="800" />
+            <Setter Property="ResizeMode" Value="NoResize" />
+            <Setter Property="WindowStyle" Value="None" />
+            <Setter Property="AllowsTransparency" Value="True" />
+        </Style>
+        <!--#endregion WindowStyles-->
+
+        <!--
+            <summary>
+            Creator:            Liam Easton
+            Created:            02/02/2024
+            Summary:            Creation of the LabelStyles Resources
+            Last Updated By:    Liam Easton
+            Last Updated:       02/02/2024
+            What Was Changed:   Creation of the LabelStyles Resources
+            Last Updated By: Matthew Baccam
+            Last Updated: 04/05/2024
+            What Was Changed: Added styling to each area so its just the general "theme" so we dont have to use a fixed heigh and width
+            </summary>
+        -->
+        <!--#regionLabelStyles-->
+        <Style x:Key="lblTheme" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <TextBlock
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Foreground="{StaticResource clrDark}"
+                            Text="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="lblRegular" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Foreground="{StaticResource clrDark}"
+                            Text="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="lblHeader" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="25"
+                            FontWeight="Medium"
+                            Foreground="{StaticResource clrDark}"
+                            Text="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="lblSubHeader" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="15"
+                            FontWeight="Medium"
+                            Foreground="{StaticResource clrDark}"
+                            Text="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="lblInvalid" TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            FontWeight="Medium"
+                            Foreground="{StaticResource clrInvalid}"
+                            Text="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--#endregionLabel Styles-->
+
+        <!--
+            <summary>
+            Creator:            Liam Easton
+            Created:            02/02/2024
+            Summary:            Creation of the ButtonStyles Resources
+            Last Updated By:    Liam Easton
+            Last Updated:       02/02/2024
+            What Was Changed:   Creation of the ButtonStyles Resources
+            Last Updated By:    Matthew Baccam
+            Last Updated:       02/29/2024
+            What Was Changed:   ADded more styles
+            Last Updated By: Matthew Baccam
+            Last Updated: 04/05/2024
+            What Was Changed: Added styling to each area so its just the general "theme" so we dont have to use a fixed heigh and width
+            </summary>
+        -->
+        <!--#region ButtonStyles-->
+        <Style x:Key="btnTheme" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+            <Setter Property="Background" Value="{StaticResource clrPrimary}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="btnRegular" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+            <Setter Property="Background" Value="{StaticResource clrPrimary}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Width="150"
+                            Height="45"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="btnMedium" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+            <Setter Property="Background" Value="{StaticResource clrPrimary}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="1" 
+                                CornerRadius="5"
+                                Width="120" 
+                                Height="35"
+                                BorderBrush="{StaticResource clrDark}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource clrPrimarySelected}"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="btnLarge" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+            <Setter Property="Background" Value="{StaticResource clrPrimary}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="1" 
+                                CornerRadius="5"
+                                Width="150" 
+                                Height="50"
+                                BorderBrush="{StaticResource clrDark}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource clrPrimarySelected}"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="btnSmall" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+            <Setter Property="Background" Value="{StaticResource clrPrimary}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="1" 
+                                CornerRadius="5"
+                                Width="80" 
+                                Height="20"
+                                BorderBrush="{StaticResource clrDark}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource clrPrimarySelected}"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--#endregionButtonStyles-->
+
+        <!--
+            <summary>
+            Creator:            Liam Easton
+            Created:            02/02/2024
+            Summary:            Creation of the DataGridStyles Resources
+            Last Updated By:    Liam Easton
+            Last Updated:       02/02/2024
+            What Was Changed:   Creation of the DataGridStyles Resources
+            Last Updated By: Matthew Baccam
+            Last Updated: 04/05/2024
+            What Was Changed: Added styling to each area so its just the general "theme" so we dont have to use a fixed heigh and width
+            </summary>
+        -->
+        <!--#regionDataGridStyles-->
+        <Style x:Key="dgDataGridTheme" TargetType="{x:Type DataGrid}">
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Background" Value="{StaticResource clrLight}" />
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="CanUserResizeColumns" Value="False" />
+            <Setter Property="CanUserReorderColumns" Value="False" />
+            <Setter Property="CanUserDeleteRows" Value="False" />
+            <Setter Property="CanUserResizeRows" Value="False" />
+            <Setter Property="CanUserSortColumns" Value="False" />
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="BorderBrush" Value="{StaticResource clrDark}" />
+        </Style>
+        <Style x:Key="dgDataGrid" TargetType="{x:Type DataGrid}">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="RowHeaderWidth" Value="0" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Background" Value="{StaticResource clrLight}" />
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="CanUserResizeColumns" Value="False" />
+            <Setter Property="CanUserReorderColumns" Value="False" />
+            <Setter Property="CanUserDeleteRows" Value="False" />
+            <Setter Property="CanUserResizeRows" Value="False" />
+            <Setter Property="CanUserSortColumns" Value="False" />
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+            <Setter Property="BorderBrush" Value="{StaticResource clrDark}" />
+            <Setter Property="Margin" Value="40,0,40,0" />
+        </Style>
+        <Style x:Key="dgDataGridHeader" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Width" Value="0" />
+            <Setter Property="Height" Value="0" />
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Visibility" Value="Hidden" />
+        </Style>
+        <Style x:Key="dgDataGridRow" TargetType="{x:Type DataGridRow}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+        </Style>
+        <Style x:Key="dgDataGridCell" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Opacity" Value="65" />
+            <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+            <Setter Property="FontSize" Value="15" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource clrPrimarySelected}" />
+                    <Setter Property="Foreground" Value="{StaticResource clrDark}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource clrDark}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--  #endRegionDataGridStyles  -->
+        <!--
+            <summary>
+            Creator:            Liam Easton
+            Created:            02/02/2024
+            Summary:            Creation of the TextBoxStyles Resources
+            Last Updated By:    Liam Easton
+            Last Updated:       02/02/2024
+            What Was Changed:   Creation of the TextBoxStyles Resources
+            Last Updated By: Matthew Baccam
+            Last Updated: 04/05/2024
+            What Was Changed: Added styling to each area so its just the general "theme" so we dont have to use a fixed heigh and width
+            </summary>
+        -->
+        <!--#region TextBoxStyles-->
+        <Style x:Key="txtTheme" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border
+                            Background="{StaticResource clrLight}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style x:Key="txtRegular" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border
+                            Background="{StaticResource clrLight}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="txtSmall" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border
+                            Background="{StaticResource clrLight}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="125" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="txtTextCode" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border
+                            Background="{StaticResource clrLight}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Height" Value="29.6" />
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0,0,0,3" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="MaxLength" Value="1" />
+        </Style>
+        <Style x:Key="txtLong" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border
+                            Background="{StaticResource clrLight}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="175" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="txtStyledMD" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border
+                            Background="LightGray"
+                            BorderBrush="#A500FFFF"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="rtbStyledMD" TargetType="RichTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RichTextBox">
+                        <Border
+                            Background="LightGray"
+                            BorderBrush="#A500FFFF"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="200" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <!--#endregionTextBoxStyles-->
+
+        <!--
+             <summary>
+             Creator:            Liam Easton
+             Created:            02/02/2024
+             Summary:            Creation of the PasswordBoxStyles Resources
+             Last Updated By:    Liam Easton
+             Last Updated:       02/02/2024
+             What Was Changed:   Creation of the PasswordBoxStyles Resources
+            Last Updated By: Matthew Baccam
+            Last Updated: 04/05/2024
+            What Was Changed: Added styling to each area so its just the general "theme" so we dont have to use a fixed heigh and width
+             </summary>
+        -->
+        <!--#region PasswordBoxStyles-->
+        <Style x:Key="pwdTheme" TargetType="PasswordBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{StaticResource clrLight}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style x:Key="pwdRegular" TargetType="PasswordBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border
+                            Background="{StaticResource clrLight}"
+                            BorderBrush="{StaticResource clrDark}"
+                            BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <!--#endregionButtonStyles-->
+
+        <!--  ComboBoxStyles  -->
+        <!--  DatePickerStyles  -->
+        <!--  RadioButtonStyles  -->
+        <!--  ScrollbarStyles  -->
+
+    </Application.Resources>
+</Application>

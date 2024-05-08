@@ -1,0 +1,68 @@
+﻿<Window x:Class="WpfPresentation.Pages.Visitation.ViewVisitsPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation"
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Title="ViewVisitsPopUp" Height="450" Width="800">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.Background>
+            <RadialGradientBrush ColorInterpolationMode="ScRgbLinearInterpolation" 
+                Center="-1,1" RadiusY="1" 
+                RadiusX="2" 
+                Opacity="1" 
+                SpreadMethod="Repeat"  GradientOrigin="1,1">
+                <RadialGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </RadialGradientBrush.RelativeTransform>
+                <RadialGradientBrush.Transform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" CenterY="0"/>
+                        <SkewTransform/>
+                        <TranslateTransform Y="-8"/>
+                    </TransformGroup>
+                </RadialGradientBrush.Transform>
+                <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="White" Offset="0"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <!--  DataGrid -->
+        <DataGrid Style="{StaticResource dgDataGridTheme}" x:Name="dgVisits" Grid.ColumnSpan="3" Grid.Row="1" IsReadOnly="True"
+                  Grid.RowSpan="3" MouseDoubleClick="dgVisits_MouseDoubleClick"></DataGrid>
+        
+        <!-- Buttons -->
+        <Button Name="btnDone"  Style="{StaticResource btnRegular}" Grid.Column="2" Grid.Row="4" Content="Done" FontSize="20" FontWeight="Bold"
+                Margin="60 20 50 20" Click="btnDone_Click"></Button>
+        
+        <!-- Lablels -->
+        <Label Content="View All Visits" FontWeight="Bold" FontSize="40" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Bottom"></Label>
+
+        <Label x:Name="lblUser" Content="Logged in as username" Grid.Column="2" VerticalContentAlignment="Bottom"
+               FontSize="20" ></Label>
+        
+    </Grid>
+        
+</Window>

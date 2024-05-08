@@ -1,0 +1,76 @@
+﻿<Window x:Class="WpfPresentation.UtilWindows.CreateRequest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation.UtilWindows"
+        mc:Ignorable="d"
+        Title="File Request" Height="500" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Label x:Name="lblHeader" Content="Submit Housekeeping/Maintenance Request for Room " Style="{StaticResource lblSubHeader}" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                <!-- Cleaning or Maintenance Combobox -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <Label VerticalAlignment="Center" Content="Request Type: " Style="{StaticResource lblSubHeader}" />
+                    <ComboBox Grid.Column="1" x:Name="cbxRequestType" Width="200" VerticalAlignment="Center" HorizontalAlignment="Right" SelectionChanged="cbxRequestType_SelectionChanged" Margin="51,0,0,0"/>
+                </StackPanel>
+
+                <!-- Urgency Combobox -->
+                <StackPanel x:Name="spUrgency" Orientation="Horizontal" Margin="0,20" Visibility="Collapsed">
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Urgency: " Style="{StaticResource lblSubHeader}" />
+                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cbxUrgency" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="85,0,0,0"/>
+                </StackPanel>
+
+                <!-- Reason / Description Textbox -->
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <Label Grid.Row="1" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Reason: " Style="{StaticResource lblSubHeader}" />
+                    <TextBox x:Name="tbxReason" Grid.Row="1" Grid.Column="1" Width="283" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2" Height="100"/>
+                </StackPanel>
+
+                <!-- Phone Number Textbox -->
+                <StackPanel x:Name="spPhone" Orientation="Horizontal" Margin="0,20,0,0" Visibility="Collapsed">
+                    <Label Grid.Row="1" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Phone Number: " Style="{StaticResource lblSubHeader}" />
+                    <TextBox x:Name="tbxPhone" Grid.Row="1" Grid.Column="1" Width="227" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="2" Height="20"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="btnCancel"
+                Content="Cancel"
+                Style="{StaticResource btnRegular}"
+                Click="btnCancel_Click">
+                <Button.LayoutTransform>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+                </Button.LayoutTransform>
+            </Button>
+            <Button
+                x:Name="btnSubmit"
+                Margin="10,0,10,0"
+                Click="btnSubmit_Click"
+                Content="Apply"
+                Style="{StaticResource btnRegular}">
+                <Button.LayoutTransform>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+                </Button.LayoutTransform>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

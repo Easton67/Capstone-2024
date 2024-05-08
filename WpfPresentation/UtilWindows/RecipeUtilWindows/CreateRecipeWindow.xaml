@@ -1,0 +1,80 @@
+﻿<!--///<summary>
+    /// Creator: Matthew Baccam
+    /// Created: 02/15/2024
+    /// Summary: Initial Creation.
+    /// Last Updated By: Matthew Baccam
+    /// Last Updated: 02/15/2024
+    /// What Was changed: Initial creation
+    ///</summary>-->
+<Window x:Class="WpfPresentation.CreateRecipeWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:local="clr-namespace:WpfPresentation"
+      mc:Ignorable="d" 
+      Height="450" Width="700"
+      Title="Create Recipe" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="btnSave" Style="{StaticResource btnSmall}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="Save" Click="btnSave_Click"></Button>
+
+        <Button x:Name="btnCancel" Style="{StaticResource btnSmall}" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" VerticalAlignment="Center"  Content="Cancel" Click="btnCancel_Click"></Button>
+
+        <Label Style="{StaticResource lblSubHeader}" Content="Recipe Name*" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="txtBoxRecipeName" Grid.Row="1" Margin="0,0,0,60" VerticalContentAlignment="Top" Grid.ColumnSpan="2" MaxLines="1"></TextBox>
+
+        <Label Grid.Row="1" Style="{StaticResource lblSubHeader}" Content="Recipe Category*" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <ComboBox x:Name="cboRecipeCategory" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,25,0,10" VerticalAlignment="Bottom">
+            <ComboBoxItem>Breakfast</ComboBoxItem>
+            <ComboBoxItem>Lunch</ComboBoxItem>
+            <ComboBoxItem>Dinner</ComboBoxItem>
+        </ComboBox>
+
+        <Label Grid.Column="2" Style="{StaticResource lblSubHeader}" Content="Important Details*" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Label>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="txtBoxIngredients" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10" Text="List any important details here or any unordinary steps here." TextWrapping="Wrap" GotFocus="txtBoxIngredients_GotFocus" LostFocus="txtBoxIngredients_LostFocus"/>
+
+        <Label Grid.Column="4" Style="{StaticResource lblSubHeader}" Content="Instructions*" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Label>
+        <RichTextBox BorderBrush="Black" x:Name="txtBoxInstructions" Grid.Row="1" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="2" Margin="10" GotFocus="txtBoxInstructions_GotFocus" LostFocus="txtBoxInstructions_LostFocus">
+            <FlowDocument>
+                <Paragraph>List the instruction steps here.</Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+        <Label Grid.Column="6" Style="{StaticResource lblSubHeader}" Content="Allergens*" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Label>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="txtBoxAllergens" Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Margin="10,0,10,20" Text="List each allergen that may appear in the recipe here." TextWrapping="Wrap" GotFocus="txtBoxAllergens_GotFocus" LostFocus="txtBoxAllergens_LostFocus"></TextBox>
+        
+        <Label Grid.Column="6" Grid.Row="1" Style="{StaticResource lblSubHeader}" Content="Description*" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Label>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="txtBoxDescription" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Margin="10" Text="Enter a brief description about the recipe" TextWrapping="Wrap" LostFocus="txtBoxDescription_LostFocus" GotFocus="txtBoxDescription_GotFocus"></TextBox>
+
+        <Label Grid.Column="6" Grid.Row="3" Style="{StaticResource lblSubHeader}" Content="Calories*" VerticalAlignment="Top" HorizontalAlignment="Center"></Label>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="txtBoxCalories" FontSize="12" Grid.Row="3" Grid.Column="7" VerticalAlignment="Top" Text="Whole numbers" MaxLines="1" Margin="5" GotFocus="txtBoxCalories_GotFocus" LostFocus="txtBoxCalories_LostFocus"></TextBox>
+
+        <Label Grid.Column="6" Grid.Row="3" Style="{StaticResource lblSubHeader}" Content="Prep Time*" FontSize="15" VerticalAlignment="Bottom"></Label>
+        <TextBox Style="{StaticResource txtTheme}" x:Name="txtBoxPrepTime" Grid.Column="7" Grid.Row="3" Margin="5" Text="Whole numbers" MaxLines="1" VerticalAlignment="Bottom" GotFocus="txtBoxPrepTime_GotFocus" LostFocus="txtBoxPrepTime_LostFocus"></TextBox>
+
+        <Label Grid.Row="4" Grid.Column="6" Style="{StaticResource lblSubHeader}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Vegan"></Label>
+        <CheckBox x:Name="chkBoxVegan" Grid.Row="4" Grid.Column="6" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right"></CheckBox>
+
+        <Image x:Name="imgRecipe" Grid.Row="3" Grid.ColumnSpan="2" Margin="10,5,10,5"></Image>
+        <Button x:Name="btnInsertImage" Style="{StaticResource btnMedium}" Grid.Row="4" Grid.ColumnSpan="2" Margin="25,15,25,15" Content="Insert Image" Click="btnInsertImage_Click"></Button>
+
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "ErrorPage";
+    ViewBag.PageType = "NoHero";
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Error</title>
+
+
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div id="notfound" class="text-center d-flex justify-content-center">
+        <div class="card border-danger text-center w-50" style="margin-bottom: 55vh; margin-top: 10vh;">
+            <div class="card-body">
+                <h2 class="card-title">Page not found</h2>
+                <p class="card-text">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+                <button class="btn bg-danger rounded-pill">
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "text-light", @style = "text-decoration: none" })
+                </button>
+            </div>
+        </div>
+    </div>
+</body>

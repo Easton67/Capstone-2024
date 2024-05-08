@@ -1,0 +1,134 @@
+﻿﻿@*
+Creator: Liam Easton
+Created: 3/10/2024
+Summary: Creation of the layout page
+Last Updated By: Ethan McElree
+Last Updated: 3/27/2024
+What Was Changed: Removed align-bottom from footer.  Align-bottom interfered with forms bigger than window size.
+Last Updated By: Matthew Baccam
+Last Updated: 04/11/2024
+What Was Changed: Added bootstraps js tag, created visibility options based on the user viewing
+*@
+@*@model MvcPresentation.Models.AddPhoneNumberViewModel*@
+@using Microsoft.AspNet.Identity
+@{
+ViewBag.Dropdown = "Phone Number";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Homes for the Homeless</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+</head>
+<body class="text-light bg-radial-gradient">
+    <div class="sticky-top">
+        <nav class="navbar navbar-expand-lg px-4">
+            <a href="@Url.Action("Index", "Home")" class="d-inline-flex link-body-emphasis text-decoration-none m-lg-2">
+                <img src="~/Images/circlelogo.png" style="height: 32px" alt="...">
+            </a>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Homes For The Homeless</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 mx-3">
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li class="nav-item">@Html.ActionLink("Volunteer", "VolunteerApplication", "Applications", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Donations", "Index", "Donations", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("About Us", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Events
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-item">
+                                <li class="nav-item">@Html.ActionLink("All Events", "Index", "Events", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li class="nav-item">@Html.ActionLink("Fundraising Events", "Index", "Fundraising", new { area = "" }, new { @class = "nav-link" })</li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">@Html.ActionLink("Appointments", "Index", "Appointments", new { area = "" }, new { @class = "nav-link" })</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">@Html.ActionLink("Orders", "Index", "Transportation", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Analytics", "Dashboard", "Analytics", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Administration
+                                </a>
+                                
+                                <ul class="dropdown-menu dropdown-menu-item">
+                                    <li class="nav-item">@Html.ActionLink("Admin", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="nav-item">@Html.ActionLink("Volunteers", "Index", "Volunteering", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="nav-item">@Html.ActionLink("Incidents", "Index", "Security", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="nav-item">@Html.ActionLink("Visitations", "Index", "Visitations", new { area = "" }, new { @class = "nav-link" })</li>
+                                    <li class="nav-item">@Html.ActionLink("Maintenance", "Index", "Maintenance", new { area = "" }, new { @class = "nav-link" })</li>
+                                </ul>
+                            </li>
+                        }
+                    }
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+</div>
+
+<div>
+    <div class="row mx-5">
+        <div class="row justify-content-center">
+            <div class="col">
+                @if (@ViewBag.PageType != "NoHero")
+                {
+                    <br />
+                    <h1 class="text-center fw-bold mt-2">
+                        @*if the title doesn't match what I want for the header*@
+
+                        @if (@ViewBag.Hero != null)
+                        {
+                            @ViewBag.Hero
+                        }
+                        else
+                        {
+                            @ViewBag.Title
+                        }
+                    </h1>
+                    <hr class="hr-underline">
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+    @{
+        if (ViewBag.Content == "NoContent")
+        {
+            @RenderBody()
+        }
+        else
+        {
+            <div class="content text-dark px-5">
+                @RenderBody()
+            </div>
+        }
+
+    }
+</div>
+
+@RenderSection("scripts", required: false)
+<script src="https://cdn.jsdelivr.net/npm/&#64popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+<footer class="text-center">
+    <p>&copy; @DateTime.Now.Year - Homes for the Homeless</p>
+</footer>
+</body>
+</html>
+

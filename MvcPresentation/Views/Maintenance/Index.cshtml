@@ -1,0 +1,91 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/15/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/15/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/12/2024
+    What Was Changed: formatted the data to be more clear to the viewer
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+    Last Updated By: Liam Easton
+    Last Updated: 4/25/2024
+    What Was Changed: changed page to match UI and moved fields around
+*@
+@model IEnumerable<DataObjects.MaintenanceRequest>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "Maintenance Requests";
+}
+
+<a class="btn-generic" href="@Url.Action("Create", "Maintenance")">
+    Create Request
+</a>
+
+<table class="table mt-4">
+    <tr>
+        <th>
+            Date Created
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Requester
+        </th>
+        <th>
+            Phone Number
+        </th>
+        <th>
+            Description
+        </th>
+        <th>Options</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item._dateCreated.ToString("d")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._requestor)
+            </td>
+            <td>
+                @{
+                    // turn the phone number into a long integer and then format it
+                    long phoneNumber = long.Parse(item._phone);
+                    string formattedPhoneNumber = string.Format("{0:(###) ###-####}", phoneNumber);
+                    @formattedPhoneNumber
+                }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item._description)
+            </td>
+
+            <td>
+                <a href="@Url.Action("Details", "Maintenance", new {  id = item._requestID })">
+                    Details
+                </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("Edit", "Maintenance", new {  id = item._requestID })">
+                        Edit
+                    </a>
+                    <a class="text-danger" href="@Url.Action("Delete", "Maintenance", new {  id = item._requestID })">
+                        Delete
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DataObjects.StayVM>
+
+@{
+    ViewBag.Title = "Stays";
+}
+
+<h2>Stays</h2>
+
+<p>
+    <a href="@Url.Action("CreateStay", "Analytics")" class="btn btn-primary">New Stay</a>
+</p>
+<table class="table bg-primary table-bordered">
+    <tr>
+        <th class="bg-primary">
+            @Html.DisplayNameFor(model => model.ClientID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OutDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckedOut)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OutDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckedOut)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditStay", new { stayID = item.StayID })
+            |
+            @Html.ActionLink("Details", "DetailsStay", new { stayID = item.StayID }) |
+            @Html.ActionLink("Delete", "DeleteStay", new { stayID = item.StayID })
+        </td>
+    </tr>
+}
+
+</table>

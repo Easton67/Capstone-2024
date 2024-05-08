@@ -1,0 +1,85 @@
+﻿@*
+    Creator: Kirsten Stage
+    Created: 4/26/2024
+    Summary: Creation of fundraising index view
+    Last Updated By: Kirsten Stage
+    Last Updated: 4/26/2024
+    What Was Changed: Initial creation
+*@
+
+
+@model IEnumerable<DataObjects.FundraisingEvent>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Title = "All Fundraising Events";
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn-generic" href="@Url.Action("Create", "Fundraising")">
+        Create Fundraiser
+    </a>
+}
+
+
+@if (Model.Count() > 0)
+{
+    <table class="table mt-4">
+        <tr>
+            <th>
+                Event Name
+            </th>
+            <th>
+                Fundraising Goal
+            </th>
+            <th>
+                Event Address
+            </th>
+            <th>
+                Event Date
+            </th>
+            <th>
+                Start Time
+            </th>
+            <th>
+                End Time
+            </th>
+            <th>
+                Event Description
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="140">
+                    @Html.DisplayFor(modelItem => item.EventName)
+                </td>
+                <td width="180">
+                    @Html.DisplayFor(modelItem => item.FundraisingGoal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventAddress)
+                </td>
+                <td width="160">
+                    @Html.DisplayFor(modelItem => item.EventDate)
+                </td>
+                <td width="120">
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td width="100">
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventDescription)
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h1 class="mt-4">No Fundraising Events.</h1>
+}
+

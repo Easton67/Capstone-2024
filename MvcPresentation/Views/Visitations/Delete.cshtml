@@ -1,0 +1,113 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the delete actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: initial creation
+*@
+@model DataObjects.Visit
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Visit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitReason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitReason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GetCheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GetCheckIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GetCheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GetCheckOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

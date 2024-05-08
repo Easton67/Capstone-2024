@@ -1,0 +1,86 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the create actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: Added date inputs instead of text
+    Last Updated By: Liam Easton
+    Last Updated: 4/25/2024
+    What Was Changed: Changed UI to look like other pages
+*@
+@model DataObjects.Visit
+
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Hero = "Create a new visit";
+}
+
+
+<div class="default-container">
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                First Name:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Last Name:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Check in:
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CheckIn, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Check out:
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.CheckOut, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Reason for visiting:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.VisitReason, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.VisitReason, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn-generic" />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div>
+        <div class="form-group mt-4">
+            <button class="btn-generic" onclick="window.location.href='@Url.Action("Index", "Visitations")'">
+                All Visitations
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

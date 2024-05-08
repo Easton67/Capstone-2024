@@ -1,0 +1,51 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/15/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/15/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/12/2024
+    What Was Changed: added viewbag hero
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+    Last Updated By:    Matthew Baccam
+    Last Updated:       04/26/2024
+    What Was Changed:   Made this a calendar view and also changed the model this is based on
+*@
+@model IEnumerable<MvcPresentation.Models.EventVM>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "All Events";
+    ViewBag.PageType = "NoHero";
+}
+
+<h2 class="text-center pt-5 fw-bold">All Events</h2>
+<div class="w-100 p-5">
+    <div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="text-center w-100 d-flex justify-content-end">
+                <a class=" btn-generic" href="@Url.Action("Create", "Events")" style="margin-right: 12.5%">
+                    Create Event
+                </a>
+            </div>
+        }
+        <div id='calendar' class="mx-auto mt-2 w-75 h-50"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: { end: 'today,prev,next' },
+            events: @(Html.Raw(Json.Encode(Model))),
+            themeSystem: 'bootstrap5'
+        });
+        calendar.render();
+    });
+</script>

@@ -1,0 +1,98 @@
+﻿@*
+    Creator: Liam Easton
+    Created: ???
+    Summary: Readded this view to make sure it was hooked up to the controller.
+*@
+
+@model DataObjects.MaintenanceRequest
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Hero = "Request Details";
+}
+<div class="default-container">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model._requestID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._requestID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model._roomID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._roomID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model._urgency)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._urgency)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model._status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._status)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model._requestor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._requestor)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model._phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model._dateCreated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._dateCreated)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model._description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model._description)
+            </dd>
+
+            <dd>
+                <div class="form-group mt-4" onclick="window.location.href='@Url.Action("Edit", "Maintenance", new {  id = Model._requestID  })'">
+                    <button class="btn-generic">
+                        Edit Request
+                    </button>
+                </div>
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <div class="form-group mt-4" onclick="window.location.href='@Url.Action("Index", "Maintenance")'">
+            <button class="btn-generic">
+                Back to Requests
+            </button>
+        </div>
+    </div>
+</div>
+
+

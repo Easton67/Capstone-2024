@@ -1,0 +1,42 @@
+﻿<!--
+    /// <summary>
+    ///Creator:            Darryl Shirley
+    ///Created:            04/10/2024
+    ///Summary:            Page used to reject volunteer applications
+    ///Last Updated By:    Darryl Shirley
+    ///Last Updated:       04/10/2024
+    ///What Was Changed:   Initial Creation
+    /// </summary>
+-->
+    <Window x:Class="WpfPresentation.Pages.Applications.pgRejectVolunteerApplication"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation.Pages.Applications"
+        mc:Ignorable="d"
+        Title="pgRejectVolunteerApplication" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="tbApplicantID" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource lblHeader}">
+            You are Rejecting
+        </Label>
+        <Label x:Name="lblReasonForStatus" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource lblSubHeader}">
+            Reason for Rejection Status
+        </Label>
+        <TextBox x:Name="txtReasonForStatus" Grid.Row="2" Grid.ColumnSpan="2" Margin="25">
+
+        </TextBox>
+        <Button x:Name="btnBack" Grid.Row="3" Grid.Column="0" Style="{StaticResource btnMedium}" Click="btnBack_Click" >Back</Button>
+        <Button x:Name="btnSubmit" Grid.Row="3" Grid.Column="1" Style="{StaticResource btnMedium}" Click="btnSubmit_Click" >Submit</Button>
+    </Grid>
+</Window>

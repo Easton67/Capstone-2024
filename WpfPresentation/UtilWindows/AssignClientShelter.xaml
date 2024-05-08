@@ -1,0 +1,88 @@
+﻿<Window
+    x:Class="WpfPresentation.UtilWindows.AssignClientShelter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfPresentation.UtilWindows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Assign Client Shelter"
+    Width="400"
+    Height="300"
+    ResizeMode="NoResize"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Label Content="Please select a client to assign to this room:" Style="{StaticResource lblSubHeader}" />
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Label
+                Margin="5"
+                VerticalAlignment="Top"
+                Content="Client: "
+                Style="{StaticResource lblSubHeader}" />
+            <StackPanel Orientation="Vertical">
+                <TextBox
+                    x:Name="txtSearch"
+                    Width="200"
+                    Height="30"
+                    Padding="5,5,0,0"
+                    Panel.ZIndex="1"
+                    BorderBrush="#252525"
+                    BorderThickness="1.5"
+                    FontSize="14"
+                    GotFocus="txtSearch_GotFocus"
+                    LostFocus="txtSearch_LostFocus"
+                    Text="Search"
+                    TextChanged="txtSearch_TextChanged">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <ListBox
+                    x:Name="lbFilteredEmployees"
+                    BorderThickness="0,0,0,0"
+                    SelectionChanged="lbFilteredEmployees_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding UserID}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="btnCancel"
+                Content="Cancel"
+                Style="{StaticResource btnRegular}"
+                Click="btnCancel_Click">
+                <Button.LayoutTransform>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+                </Button.LayoutTransform>
+            </Button>
+            <Button
+                x:Name="btnSubmit"
+                Margin="10,0,10,0"
+                Click="btnSubmit_Click"
+                Content="Apply"
+                Style="{StaticResource btnRegular}">
+                <Button.LayoutTransform>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+                </Button.LayoutTransform>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,87 @@
+﻿<Page x:Class="WpfPresentation.Pages.Stay.pgViewStays"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Stay"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pgViewStays" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Filter: " Style="{StaticResource lblSubHeader}" HorizontalAlignment="Left"/>
+            <Separator VerticalAlignment="Bottom" Grid.ColumnSpan="4"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Label Content="Client: " Style="{StaticResource lblSubHeader}" HorizontalAlignment="Left"/>
+                <ComboBox x:Name="cbxClient" VerticalAlignment="Center" Width="150" SelectionChanged="cbxClient_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding UserID}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="btnClearClient" VerticalAlignment="Center" Click="btnClearClient_Click" Content=" X "/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Label Content="Room: " Style="{StaticResource lblSubHeader}" HorizontalAlignment="Left"/>
+                <ComboBox x:Name="cbxRoom" VerticalAlignment="Center" Width="150" SelectionChanged="cbxRoom_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RoomNumber}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="btnClearRoom" VerticalAlignment="Center" Click="btnClearRoom_Click" Content=" X "/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Label Content="In Date: " Style="{StaticResource lblSubHeader}" HorizontalAlignment="Left"/>
+                <DatePicker x:Name="dpInDate" VerticalAlignment="Center" SelectedDateChanged="dpInDate_SelectedDateChanged"/>
+                <Button x:Name="btnClearInDate" VerticalAlignment="Center" Click="btnClearInDate_Click" Content=" X "/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Label Content="Out Date: " Style="{StaticResource lblSubHeader}" HorizontalAlignment="Left"/>
+                <DatePicker x:Name="dpOutDate" VerticalAlignment="Center" SelectedDateChanged="dpOutDate_SelectedDateChanged"/>
+                <Button x:Name="btnClearOutDate" VerticalAlignment="Center" Click="btnClearOutDate_Click" Content=" X "/>
+            </StackPanel>
+        </Grid>
+
+        <DataGrid x:Name="dgViewStays" IsReadOnly="True" Grid.Row="1">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem
+                        x:Name="mnuEditStay"
+                        Click="btnEditStay_Click"
+                        Header="Edit Stay" />
+                    <MenuItem
+                        x:Name="mnuRemoveStay"
+                        Click="btnRemoveStay_Click"
+                        Header="Remove Stay" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnAddStay" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="15 3" FontSize="18" HorizontalContentAlignment="Center" FontWeight="DemiBold" Click="btnAddStay_Click">Add Stay</Button>
+            <Button x:Name="btnEditStay" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="15 3" FontSize="18" HorizontalContentAlignment="Center" FontWeight="DemiBold" Click="btnEditStay_Click" Margin="10,0,0,0">Edit Stay</Button>
+            <Button x:Name="btnRemoveStay" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="15 3" FontSize="18" HorizontalContentAlignment="Center" FontWeight="DemiBold" Click="btnRemoveStay_Click" Margin="10,0,0,0">Remove Stay</Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,46 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the details actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: initial creation
+*@
+@model DataObjects.EventVM
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Hero = "Event Details";
+}
+
+@*<div class="card text-center mx-auto w-75">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body">*@
+<div class="default-container d-flex mx-auto w-50">
+    <div class="w-75 mx-auto text-center">
+        <div class="h1 text-decoration-underline">@Model.EventName</div>
+        <div class="h2">@Model.Description</div>
+        <div class="mt-3">Location: @Model.Address</div>
+        <div>Date: @Model.EventDay.ToShortDateString()</div>
+
+        @if (Model.StartTime.Date > Model.EndTime)
+        {
+            <div>Start: @Model.StartTime.ToString("MM/dd h:mm tt") End: @Model.EndTime.ToString("MM/dd h:mm tt")</div>
+        }
+        else
+        {
+            <div>From: @Model.StartTime.ToString("h:mm tt") - @Model.EndTime.ToString("h:mm tt")</div>
+        }
+
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mt-4">
+                <a class="m-1 btn-generic align-items-center" href="@Url.Action("Edit", "Events", new {id = Model.EventID})">
+                    Edit Event
+                </a>
+            </div>
+        }
+    </div>
+</div>

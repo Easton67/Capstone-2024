@@ -1,0 +1,100 @@
+﻿<!--
+    /// <summary>
+    ///Creator:            Mitchell Stirmel
+    ///Created:            03/20/2024
+    ///Summary:            Page used to view volunteer applications
+    ///Last Updated By:    Anthony Talamantes
+    ///Last Updated:       04/18/2024
+    ///What Was Changed:   Added Filter to Page, String Format to Date Added, and changed Data Grid to Read Only
+-->
+<Page x:Class="WpfPresentation.Pages.Applications.pgVolunteerApplications"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Applications"
+      mc:Ignorable="d" 
+      d:DesignHeight="545" d:DesignWidth="800"
+      Title="pgVolunteerApplications">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="10" />
+            </Grid.RowDefinitions>
+            
+            <ComboBox x:Name="cboFilter" Grid.Row="1" Margin="0,0,450,0" Text="Filter Applications" SelectionChanged="cboFilter_SelectionChanged"></ComboBox>
+        </Grid>
+
+        <DataGrid Style="{StaticResource dgDataGridTheme}" Grid.Row="0" Grid.Column="0" x:Name="datVolunteerApplications" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Margin="0 50 0 0" SelectionChanged="datVolunteerApplications_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Applicant" Binding="{Binding ApplicantID}" Width="*"/>
+                <DataGridTextColumn Header="Date Applied" Binding="{Binding DateApplied, StringFormat=d}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="btnAcceptApplication" Style="{StaticResource btnMedium}" Grid.Row="1" Margin="25 20 25 20" Content="Accept" Click="btnAcceptApplication_Click"/>
+            <Button x:Name="btnDenyApplication" Style="{StaticResource btnMedium}" Grid.Row="2" Margin="25 20 25 20" Content="Deny" Click="btnDenyApplication_Click"/>
+            <Button x:Name="btnHoldApplication" Style="{StaticResource btnMedium}" Grid.Row="3" Margin="25 20 25 20" Content="Hold" Click="btnHoldApplication_Click" />
+        </Grid>
+
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="lblInfo0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center">Volunteer Application Information</Label>
+
+            <Label x:Name="lblInfo1" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" Margin="0 20 0 0">Why do you want to volunteer?</Label>
+            <TextBlock x:Name="tbkVolunteerReason" Grid.RowSpan="2" Grid.Column="1" Margin="0 40 0 25">Reasoning</TextBlock>
+
+            <Label x:Name="lblInfo2" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Margin="0 20 0 0">Concerns?</Label>
+            <TextBlock x:Name="tbkVolunteerConerns" Grid.Row="2" Grid.Column="1" Margin="0 0 0 0">Reasoning</TextBlock>
+
+            <Label x:Name="lblInfo3" HorizontalContentAlignment="Center" Margin="0 20 0 0">Contact Information:</Label>
+
+            <Label x:Name="lblInfo4" HorizontalContentAlignment="Left" Margin="0 40 0 0">Name:</Label>
+            <Label x:Name="lblVolunteerName" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="50 40 60 20">FullName</Label>
+
+            <Label x:Name="lblInfo5" HorizontalContentAlignment="Left" Grid.Row="1" Margin="0 0 0 0">Phone:</Label>
+            <Label x:Name="lblVolunteerPhone" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="50 0 60 60">Phone</Label>
+
+            <Label x:Name="lblInfo6" HorizontalContentAlignment="Left" Grid.Row="1" Margin="0 40 0 20">Email:</Label>
+            <Label x:Name="lblVolunteerEmail" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="50 40 60 20">Email</Label>
+
+            <Label x:Name="lblInfo7" HorizontalContentAlignment="Left" Grid.Row="2" Margin="0 20 0 40">Hours Desired Per Week?</Label>
+            <Label x:Name="lblVolunteerHours" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="80 20 40 40">Hours</Label>
+
+
+        </Grid>
+
+    </Grid>
+</Page>

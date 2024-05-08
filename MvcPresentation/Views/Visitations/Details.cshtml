@@ -1,0 +1,61 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the details actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: initial creation
+*@
+@model DataObjects.Visit
+
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Hero = "Visit Details";
+}
+
+<div class="default-container">
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Visitor:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                Check In:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GetCheckIn)
+            </dd>
+
+            <dt>
+                Check Out:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GetCheckOut)
+            </dd>
+
+            <dt>
+                Visit Reason:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VisitReason)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <button class="my-4 btn-grey br-30 p-3 grow">
+            <a class="text-decoration-none text-dark" onclick="window.location.href='@Url.Action("Index", "Visitations")'">
+                All Visits
+            </a>
+        </button>
+    </div>
+    
+</div>
+

@@ -1,0 +1,91 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/10/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/10/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+    Last Updated By: Liam Easton
+    Last Updated: 4/24/2024
+    What Was Changed: added admin vs user logic
+*@
+@model IEnumerable<DataObjects.Donation>
+
+@{
+    ViewBag.Title = "Index";
+    if (User.IsInRole("Admin"))
+    {
+        ViewBag.Hero = "All Donations";
+    }
+    else
+    {
+        ViewBag.Hero = "Your Donation Matters!";
+    }
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <table class="table my-4">
+        <tr class="bg-dark text-white">
+            <th>
+                @Html.DisplayNameFor(model => model.DonationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonationDate)
+            </th>
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="bg-grey">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @item.DonationDate.ToString("d")
+                </td>
+                <td>
+                    <a class="text-decoration-none text-dark" href="@Url.Action("Details", "Donations", new {  id = item.DonationID })">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="d-flex flex-wrap justify-content-center gap-5">
+        <div class="align-items-center">
+            <img src="~/Images/Donation.png" alt="Donation" />
+        </div>
+        <div style="width: 20px;">
+
+        </div>
+        <div class="w-25 text-center">
+            <div class="h2">
+                <p>
+                    Your donation directly translates into tangible support
+                    for those who are experiencing homelessness. From providing meals and warm clothing
+                    to offering safe and secure shelter, every contribution helps meet the immediate needs
+                    of individuals and families in crisis.
+                </p>
+            </div>
+            <div class="mt-5 text-center">
+                <a class="btn-grey br-30 p-3 grow" href="@Url.Action("Create", "Donations")">
+                    Make A Donation
+                </a>
+            </div>
+        </div>
+    </div>
+}

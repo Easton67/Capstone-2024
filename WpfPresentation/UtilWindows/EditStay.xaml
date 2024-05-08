@@ -1,0 +1,102 @@
+﻿<Window x:Class="WpfPresentation.UtilWindows.EditStay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation.UtilWindows"
+        mc:Ignorable="d"
+        Title="Edit Stay" Height="400" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Label Content="Edit Stay:" Style="{StaticResource lblSubHeader}" />
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Client -->
+            <Label Margin="5" VerticalAlignment="Center" Content="Client: " Style="{StaticResource lblSubHeader}" HorizontalAlignment="Right" />
+            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBox x:Name="txtSearch" Width="200" Height="30" Padding="5,5,0,0" Panel.ZIndex="1" VerticalAlignment="Center"
+                    BorderBrush="#252525" BorderThickness="1.5" FontSize="14" GotFocus="txtSearch_GotFocus"
+                    LostFocus="txtSearch_LostFocus" Text="Search" TextChanged="txtSearch_TextChanged" HorizontalAlignment="Left">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </StackPanel>
+            <ListBox
+                    x:Name="lbFilteredClients" BorderThickness="0,0,0,0" Grid.Column="1" Grid.RowSpan="2" Margin="0,45,0,0" VerticalAlignment="Top"
+                    SelectionChanged="lbFilteredClients_SelectionChanged" HorizontalAlignment="Left" Width="200" Panel.ZIndex="1000">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding UserID}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- Room -->
+            <Label Grid.Row="1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Room #: " Style="{StaticResource lblSubHeader}" />
+            <ComboBox Grid.Row="1" Grid.Column="1" Panel.ZIndex="1" x:Name="cbxRoom" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding RoomNumber}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- In Date -->
+            <Label Grid.Row="2" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Content="In Date: " Style="{StaticResource lblSubHeader}" />
+            <DatePicker x:Name="dpInDate" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left"/>
+
+            <!-- Out Date -->
+            <Label Grid.Row="3" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Out Date: " Style="{StaticResource lblSubHeader}"/>
+            <DatePicker x:Name="dpOutDate" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left"/>
+            
+            <!-- Checked Out -->
+            <Label Grid.Row="4" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Checked Out: " Style="{StaticResource lblSubHeader}" />
+            <CheckBox x:Name="cbCheckedOut" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+            
+        </Grid>
+        
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="btnCancel"
+                Content="Cancel"
+                Style="{StaticResource btnRegular}"
+                Click="btnCancel_Click">
+                <Button.LayoutTransform>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+                </Button.LayoutTransform>
+            </Button>
+            <Button
+                x:Name="btnSubmit"
+                Margin="10,0,10,0"
+                Click="btnSubmit_Click"
+                Content="Apply"
+                Style="{StaticResource btnRegular}">
+                <Button.LayoutTransform>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75" />
+                </Button.LayoutTransform>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,107 @@
+﻿@model DataObjects.Stay
+
+@{
+    ViewBag.Title = "Edit Stay";
+    IEnumerable<string> clientList = ViewBag.ClientList;
+    IEnumerable<int> roomList = ViewBag.RoomList;
+}
+
+<h2>Edit Stay</h2>
+
+
+@using (Html.BeginForm("EditStay", "Analytics", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Stay</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.StayID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClientID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ClientID, new SelectList(clientList), "Choose a client:", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ClientID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoomID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RoomID, new SelectList(roomList), "Choose a room:", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoomID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div id="inDate"
+                 class="input-group date"
+                 data-date-format="mm-dd-yyyy"
+                 style="width: fit-content;">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.InDate, new { htmlAttributes = new { @class = "form-control", name = "inDate", type = "text", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.InDate, "", new { @class = "text-danger" })
+                </div>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OutDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div id="outDate"
+                 class="input-group date"
+                 data-date-format="mm-dd-yyyy"
+                 style="width: fit-content;">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.OutDate, new { htmlAttributes = new { @class = "form-control", name = "outDate", type = "text", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.OutDate, "", new { @class = "text-danger" })
+                </div>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckedOut, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.CheckedOut)
+                    @Html.ValidationMessageFor(model => model.CheckedOut, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Stays")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $('#inDate').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                todayBtn: "linked"
+            });
+            $('#outDate').datepicker({
+                autoclose: true,
+                todayHighlight: true,
+                todayBtn: "linked"
+            });
+        });
+    </script>
+}

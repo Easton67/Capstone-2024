@@ -1,0 +1,1033 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props')" />
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B9167A8-7A20-46B7-8094-BBB4B5EEEB06}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WpfPresentation</RootNamespace>
+    <AssemblyName>Homeless Dashboard</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>main.ico</ApplicationIcon>
+    <StartupObject>WpfPresentation.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeCoverage.17.8.0\lib\net462\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Custom Controls\HousekeepingTaskListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Custom Controls\RoomListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Custom Controls\ShiftListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Custom Controls\WeekSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Custom Controls\ViewDepartmentSchedule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DevPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\pgChangeAccountPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\pgCreateReminder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Admin\pgCreateUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Applications\pgRejectVolunteerApplication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Applications\pgVolunteerApplications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Applications\pgVolunteerQuestionnaire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgCreateFundraisingEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgEventMealPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Appointments\pgCreateAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Applications\VolunteerApplicationOnHold.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgEventSignUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Events\pgEditEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgRequestEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Admin\pgViewUserAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Appointments\pgViewAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgViewEventInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgViewEventMeals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgViewFundraisingEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Housekeeping\pgHousekeepingTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Housekeeping\pgConfirmAndCompleteCleaning.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Housekeeping\ViewHousekeepingTasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Custom Controls\HousekeepingTaskListItem.xaml.cs">
+      <DependentUpon>HousekeepingTaskListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\pgChangeAccountPassword.xaml.cs">
+      <DependentUpon>pgChangeAccountPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\pgCreateReminder.xaml.cs">
+      <DependentUpon>pgCreateReminder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\pgCreateUser.xaml.cs">
+      <DependentUpon>pgCreateUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Applications\pgRejectVolunteerApplication.xaml.cs">
+      <DependentUpon>pgRejectVolunteerApplication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Applications\pgVolunteerApplications.xaml.cs">
+      <DependentUpon>pgVolunteerApplications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Applications\pgVolunteerQuestionnaire.xaml.cs">
+      <DependentUpon>pgVolunteerQuestionnaire.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgCreateFundraisingEvent.xaml.cs">
+      <DependentUpon>pgCreateFundraisingEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgEventMealPlan.xaml.cs">
+      <DependentUpon>pgEventMealPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Appointments\pgCreateAppointment.xaml.cs">
+      <DependentUpon>pgCreateAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Applications\VolunteerApplicationOnHold.xaml.cs">
+      <DependentUpon>VolunteerApplicationOnHold.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgEventSignUp.xaml.cs">
+      <DependentUpon>pgEventSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgEditEvent.xaml.cs">
+      <DependentUpon>pgEditEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgRequestEvent.xaml.cs">
+      <DependentUpon>pgRequestEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\pgViewUserAccounts.xaml.cs">
+      <DependentUpon>pgViewUserAccounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Appointments\pgViewAppointment.xaml.cs">
+      <DependentUpon>pgViewAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgViewEventInformation.xaml.cs">
+      <DependentUpon>pgViewEventInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgViewEventMeals.xaml.cs">
+      <DependentUpon>pgViewEventMeals.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgViewFundraisingEvent.xaml.cs">
+      <DependentUpon>pgViewFundraisingEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Housekeeping\pgHousekeepingTask.xaml.cs">
+      <DependentUpon>pgHousekeepingTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Housekeeping\pgConfirmAndCompleteCleaning.xaml.cs">
+      <DependentUpon>pgConfirmAndCompleteCleaning.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Housekeeping\ViewHousekeepingTasks.xaml.cs">
+      <DependentUpon>ViewHousekeepingTasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Inventory\pgAddEditPartsInventory.xaml.cs">
+      <DependentUpon>pgAddEditPartsInventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Maintenance\pgViewScheduledRepairs.xaml.cs">
+      <DependentUpon>pgViewScheduledRepairs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Stay\pgViewStays.xaml.cs">
+      <DependentUpon>pgViewStays.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Memberships\pgViewMembershipApplications.xaml.cs">
+      <DependentUpon>pgViewMembershipApplications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Messaging\PgEmailAlert.xaml.cs">
+      <DependentUpon>PgEmailAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Security\pgAddConfiscatedItem.xaml.cs">
+      <DependentUpon>pgAddConfiscatedItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Security\pgViewConfiscatedItems.xaml.cs">
+      <DependentUpon>pgViewConfiscatedItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Security\pgViewCurrentUserSubmittedIncidents.xaml.cs">
+      <DependentUpon>pgViewCurrentUserSubmittedIncidents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Maintenance\completeRepair.xaml.cs">
+      <DependentUpon>completeRepair.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Maintenance\pgCreateMaintenanceRequest.xaml.cs">
+      <DependentUpon>pgCreateMaintenanceRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Room\pgUpdateRoomStatus.xaml.cs">
+      <DependentUpon>pgUpdateRoomStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Schedule\pgViewAllSchedules.xaml.cs">
+      <DependentUpon>pgViewAllSchedules.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Schedule\pgViewSchedule.xaml.cs">
+      <DependentUpon>pgViewSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Security\pgViewSubmittedIncidents.xaml.cs">
+      <DependentUpon>pgViewSubmittedIncidents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Stats\PgShelterDashboard.xaml.cs">
+      <DependentUpon>PgShelterDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Transportation\PageViewAllItems.xaml.cs">
+      <DependentUpon>PageViewAllItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Transportation\pgCreateOrder.xaml.cs">
+      <DependentUpon>pgCreateOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Transportation\pgTransportationOrders.xaml.cs">
+      <DependentUpon>pgTransportationOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\pgClientPriority.xaml.cs">
+      <DependentUpon>pgClientPriority.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Vendors\pgVendors.xaml.cs">
+      <DependentUpon>pgVendors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Visitation\pgCreateVisit.xaml.cs">
+      <DependentUpon>pgCreateVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Visitation\pgEditVisit.xaml.cs">
+      <DependentUpon>pgEditVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Visitation\pgViewAllVisits.xaml.cs">
+      <DependentUpon>pgViewAllVisits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\AddVolunteerToEventPage.xaml.cs">
+      <DependentUpon>AddVolunteerToEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Visitation\pgVisitations.xaml.cs">
+      <DependentUpon>pgVisitations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\pgSignUpVolunteer.xaml.cs">
+      <DependentUpon>pgSignUpVolunteer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\pgViewVolunteerQuestionnaire.xaml.cs">
+      <DependentUpon>pgViewVolunteerQuestionnaire.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\UpdateVolunteerPage.xaml.cs">
+      <DependentUpon>UpdateVolunteerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\ViewVolunteers.xaml.cs">
+      <DependentUpon>ViewVolunteers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\pgAddVolunteerSkill.xaml.cs">
+      <DependentUpon>pgAddVolunteerSkill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\pgAssessVolunteerStrengthsAndWeaknesses.xaml.cs">
+      <DependentUpon>pgAssessVolunteerStrengthsAndWeaknesses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\pgDeleteVolunteerSkill.xaml.cs">
+      <DependentUpon>pgDeleteVolunteerSkill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\AddInventoryItem.xaml.cs">
+      <DependentUpon>AddInventoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\AdminUtilWindows\EditUserWindow.xaml.cs">
+      <DependentUpon>EditUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\AdminUtilWindows\SelectUserTypeWindow.xaml.cs">
+      <DependentUpon>SelectUserTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\AssignHousekeeperToTask.xaml.cs">
+      <DependentUpon>AssignHousekeeperToTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\CalendarPopupWindow.xaml.cs">
+      <DependentUpon>CalendarPopupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\DeleteVolunteerEventPage.xaml.cs">
+      <DependentUpon>DeleteVolunteerEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\AssignClientShelter.xaml.cs">
+      <DependentUpon>AssignClientShelter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\CreateRequest.xaml.cs">
+      <DependentUpon>CreateRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\EditEvent.xaml.cs">
+      <DependentUpon>EditEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\EditInventoryItem.xaml.cs">
+      <DependentUpon>EditInventoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\EditShift.xaml.cs">
+      <DependentUpon>EditShift.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\Donations\editResourcesNeeded.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Donations\filterCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Donations\pgAddResourcesNeeded.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Donations\pgDonationManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Donations\pgUpdateDonation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgCreateEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\pgViewAllEvents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Donations\pgViewResourcesNeeded.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Inventory\pgAddEditPartsInventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Inventory\PgKitchenInventoryItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Inventory\pgPartsInventory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Login\pgLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Maintenance\completeRepair.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Maintenance\pgViewScheduledRepairs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Memberships\pgViewMembershipApplications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\pgCreateFoodMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\pgRetrieveFoodMenuWithMenuID.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\pgViewFoodMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Messaging\PgEmailAlert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Recipe\pgDeleteRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Maintenance\pgCreateMaintenanceRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Recipe\pgViewRecipeDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Recipe\pgViewRecipeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Room\PgEditRoom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Room\pgUpdateRoomStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Room\PgViewRooms.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Security\pgAddConfiscatedItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Security\pgViewConfiscatedItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Security\pgViewCurrentUserSubmittedIncidents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Schedule\pgViewAllSchedules.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Schedule\pgViewSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Security\pgViewSubmittedIncidents.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Shifts\AddShift.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Stay\pgViewStays.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Stats\PgShelterDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Transportation\PageViewAllItems.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Transportation\pgCreateOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Transportation\pgTransportationOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\CreateIncidentReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\User\pgClientPriority.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Vendors\pgAddSuppliers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Vendors\pgAddVendors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Supplier\pgEditSuppliers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Supplier\pgRetrieveSupplierWithName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Vendors\pgVendors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Visitation\pgCreateVisit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Visitation\pgEditVisit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Visitation\pgViewAllVisits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Visitation\pgVisitations.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\pgSignUpVolunteer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\pgViewVolunteerQuestionnaire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\UpdateVolunteerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\ViewVolunteers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\pgAddVolunteerSkill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\pgAssessVolunteerStrengthsAndWeaknesses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\pgDeleteVolunteerSkill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\AddInventoryItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\AdminUtilWindows\EditUserWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\AdminUtilWindows\SelectUserTypeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\AssignHousekeeperToTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\CalendarPopupWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\EditEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\RecipeUtilWindows\CreateRecipeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\ScheduleRepair.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\VisitUtilWindows\CreateVisitPopUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\VisitUtilWindows\CreateVisitWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\VisitUtilWindows\EditVisitPopUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\VisitUtilWindows\ViewVisitsPopUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\AddEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\AddVolunteerToEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\DeleteVolunteerEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\UpdateVolunteerEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VolunteerCoordinator\VolunteerEventPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Room\pgCreateRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Code\CloseWindow.cs" />
+    <Compile Include="Custom Controls\RoomListItem.xaml.cs">
+      <DependentUpon>RoomListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\ShiftListItem.xaml.cs">
+      <DependentUpon>ShiftListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\ViewDepartmentSchedule.xaml.cs">
+      <DependentUpon>ViewDepartmentSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Custom Controls\WeekSelector.xaml.cs">
+      <DependentUpon>WeekSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DevPage.xaml.cs">
+      <DependentUpon>DevPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Donations\editResourcesNeeded.xaml.cs">
+      <DependentUpon>editResourcesNeeded.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Donations\filterCategory.xaml.cs">
+      <DependentUpon>filterCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Donations\pgAddResourcesNeeded.xaml.cs">
+      <DependentUpon>pgAddResourcesNeeded.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Donations\pgDonationManager.xaml.cs">
+      <DependentUpon>pgDonationManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Donations\pgUpdateDonation.xaml.cs">
+      <DependentUpon>pgUpdateDonation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgViewAllEvents.xaml.cs">
+      <DependentUpon>pgViewAllEvents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Inventory\PgKitchenInventoryItem.xaml.cs">
+      <DependentUpon>PgKitchenInventoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Login\pgLogin.xaml.cs">
+      <DependentUpon>pgLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\pgCreateFoodMenu.xaml.cs">
+      <DependentUpon>pgCreateFoodMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\pgRetrieveFoodMenuWithMenuID.xaml.cs">
+      <DependentUpon>pgRetrieveFoodMenuWithMenuID.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\pgViewFoodMenu.xaml.cs">
+      <DependentUpon>pgViewFoodMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Recipe\pgDeleteRecipe.xaml.cs">
+      <DependentUpon>pgDeleteRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Recipe\pgViewRecipeDetails.xaml.cs">
+      <DependentUpon>pgViewRecipeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Recipe\pgViewRecipeList.xaml.cs">
+      <DependentUpon>pgViewRecipeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Room\PgEditRoom.xaml.cs">
+      <DependentUpon>PgEditRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Room\PgViewRooms.xaml.cs">
+      <DependentUpon>PgViewRooms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shifts\AddShift.xaml.cs">
+      <DependentUpon>AddShift.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\CreateIncidentReport.xaml.cs">
+      <DependentUpon>CreateIncidentReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Vendors\pgAddSuppliers.xaml.cs">
+      <DependentUpon>pgAddSuppliers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Vendors\pgAddVendors.xaml.cs">
+      <DependentUpon>pgAddVendors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Donations\pgViewResourcesNeeded.xaml.cs">
+      <DependentUpon>pgViewResourcesNeeded.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Supplier\pgEditSuppliers.xaml.cs">
+      <DependentUpon>pgEditSuppliers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Supplier\pgRetrieveSupplierWithName.xaml.cs">
+      <DependentUpon>pgRetrieveSupplierWithName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Perms.cs" />
+    <Compile Include="UtilWindows\RecipeUtilWindows\CreateRecipeWindow.xaml.cs" />
+    <Compile Include="UtilWindows\ScheduleRepair.xaml.cs">
+      <DependentUpon>ScheduleRepair.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\VisitUtilWindows\CreateVisitPopUp.xaml.cs">
+      <DependentUpon>CreateVisitPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\VisitUtilWindows\CreateVisitWindow.xaml.cs">
+      <DependentUpon>CreateVisitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\VisitUtilWindows\EditVisitPopUp.xaml.cs">
+      <DependentUpon>EditVisitPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilWindows\VisitUtilWindows\ViewVisitsPopUp.xaml.cs">
+      <DependentUpon>ViewVisitsPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\UpdateVolunteerEventPage.xaml.cs">
+      <DependentUpon>UpdateVolunteerEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Login\pgForgetPassword.xaml.cs" />
+    <Compile Include="Pages\Login\pgResetPassword.xaml.cs" />
+    <Compile Include="Pages\Login\pgVerificationCode.xaml.cs" />
+    <Compile Include="UtilWindows\EditStay.xaml.cs">
+      <DependentUpon>EditStay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewHoursOfOperationPage.xaml.cs">
+      <DependentUpon>ViewHoursOfOperationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Inventory\pgPartsInventory.xaml.cs">
+      <DependentUpon>pgPartsInventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\AddEventPage.xaml.cs">
+      <DependentUpon>AddEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pages\Room\pgCreateRoom.xaml.cs">
+      <DependentUpon>pgCreateRoom.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Pages\VolunteerCoordinator\VolunteerEventPage.xaml.cs">
+      <DependentUpon>VolunteerEventPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\pgCreateEvent.xaml.cs">
+      <DependentUpon>pgCreateEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\Housekeeping\HousekeepingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Housekeeping\ViewHousekeepingSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\AssignClientShelter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\CreateRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\EditInventoryItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilWindows\EditShift.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Inventory\pgItemInventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Maintenance\pgMaintenanceRequests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Login\pgForgetPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Login\pgResetPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Login\pgVerificationCode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UtilWindows\EditStay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewHoursOfOperationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\Housekeeping\HousekeepingPage.xaml.cs">
+      <DependentUpon>HousekeepingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Housekeeping\ViewHousekeepingSchedule.xaml.cs">
+      <DependentUpon>ViewHousekeepingSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Inventory\pgItemInventory.xaml.cs">
+      <DependentUpon>pgItemInventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Maintenance\pgMaintenanceRequests.xaml.cs">
+      <DependentUpon>pgMaintenanceRequests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Pages\README.md" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessFakes\DataAccessFakes.csproj">
+      <Project>{c7bf19c3-a316-4353-9a77-214ddba2da3d}</Project>
+      <Name>DataAccessFakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj">
+      <Project>{aa78f6e3-b628-4e56-adc5-b3f78358b8f3}</Project>
+      <Name>DataAccessInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataObjects\DataObjects.csproj">
+      <Project>{2e8dc648-5b97-4297-b7c4-61cb0aa04f3c}</Project>
+      <Name>DataObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicLayer\LogicLayer.csproj">
+      <Project>{5184cb19-2e4d-48f3-973b-a5dc4918ff70}</Project>
+      <Name>LogicLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Left.png" />
+    <Resource Include="Images\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AccountIcon.png" />
+    <Resource Include="Images\CloseButton.png" />
+    <Resource Include="Images\ExpandArrow.png" />
+    <Resource Include="Images\HomeIcon.png" />
+    <Resource Include="Images\MenuArrow.png" />
+    <Resource Include="Images\MenuIcon.png" />
+    <Resource Include="Images\MinimizeButtonLight.png" />
+    <Resource Include="Images\left-arrow.png" />
+    <Resource Include="Images\right-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ProfileIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RecipeImages\Taco.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RecipeImages\Ravioli.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RecipeImages\Enchilada.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RecipeImages\CheeseCake.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RecipeImages\CheeseBurger.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AppIcon\main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LeftHover.png" />
+    <Resource Include="Images\RightHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Boxes.png" />
+    <Resource Include="Images\Users.png" />
+    <Resource Include="Images\Vendors.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.8.0\build\net462\Microsoft.NET.Test.Sdk.targets')" />
+</Project>

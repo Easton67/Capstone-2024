@@ -1,0 +1,88 @@
+﻿<Window x:Class="WpfPresentation.Pages.Transportation.pgCreateOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation.Pages.Transportation"
+        mc:Ignorable="d"
+        Title="pgCreateOrder" Background="Transparent" Height="450" Width="800">
+    <!-- Creator: Ibrahim Albashair
+    Created: 04/25/2024
+    Summary: Xaml for pgCreateRoom
+    Last Updated By: Ibrahim Albashair
+    Last Updated: 04/25/2024
+    What Was Changed: Initial Creation
+    -->
+
+    
+    <Grid>
+        <Grid.Background>
+            <RadialGradientBrush ColorInterpolationMode="ScRgbLinearInterpolation" 
+                Center="-1,1" RadiusY="1" 
+                RadiusX="2" 
+                Opacity="1" 
+                SpreadMethod="Repeat"  GradientOrigin="1,1">
+                <RadialGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </RadialGradientBrush.RelativeTransform>
+                <RadialGradientBrush.Transform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" CenterY="0"/>
+                        <SkewTransform/>
+                        <TranslateTransform Y="-8"/>
+                    </TransformGroup>
+                </RadialGradientBrush.Transform>
+                <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="White" Offset="0"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="txtClientID" Grid.Row="1" Grid.Column="1" Margin="15" GotFocus="txtClientID_GotFocus" LostFocus="txtClientID_LostFocus">Enter Client ID (Email)</TextBox>
+        <TextBox x:Name="txtLocationID" Grid.Row="2" Grid.Column="1" Margin="15" PreviewTextInput="txtLocationID_PreviewTextInput" GotFocus="txtLocationID_GotFocus" LostFocus="txtLocationID_LostFocus">Enter Location ID (Number)</TextBox>
+        <TextBox x:Name="txtAssignedDriver" Grid.Row="6" Grid.Column="1" Margin="15" GotFocus="txtAssignedDriver_GotFocus" LostFocus="txtAssignedDriver_LostFocus">Enter Driver ID (Email)</TextBox>
+
+        <DatePicker x:Name="datePickerDayPosted" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="15"></DatePicker>
+        <DatePicker x:Name="datePickerDayToPickUp" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="15"></DatePicker>
+        <DatePicker x:Name="datePickerDayDroppedOff" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="15"></DatePicker>
+
+        <Label Grid.Row="1" Content="Client ID: " FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+        <Label Grid.Row="2" Content="Location ID: " FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+        <Label Grid.Row="3" Content="Day Posted: " FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+        <Label Grid.Row="4" Content="Day Picked Up: " FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+        <Label Grid.Row="5" Content="Day Dropped Off: " FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+        <Label Grid.Row="6" Content="Driver ID: " FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+
+        <Grid Grid.Row="7" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnCancel" Style="{StaticResource btnLarge}" FontWeight="Bold" FontSize="20" Click="btnCancel_Click"
+                     >Cancel</Button>
+            <Button x:Name="btnCreate" Style="{StaticResource btnLarge}" Grid.Column="1"
+                    FontWeight="Bold" FontSize="20" Click="btnCreate_Click_1"  >Create</Button>
+        </Grid>
+    </Grid>
+</Window>

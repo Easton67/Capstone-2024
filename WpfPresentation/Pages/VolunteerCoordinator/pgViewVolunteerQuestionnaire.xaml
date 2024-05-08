@@ -1,0 +1,71 @@
+﻿<!--
+    /// <summary>
+    ///Creator:            Darryl Shirley
+    ///Created:            04/17/2024
+    ///Summary:            Page used to View Volunteer Questionnaires
+    ///Last Updated By:    Darryl Shirley
+    ///Last Updated:       04/17/2024
+    ///What Was Changed:   Initial Creation
+    /// </summary>
+-->
+    <Window x:Class="WpfPresentation.Pages.VolunteerCoordinator.pgViewVolunteerQuestionnaire"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPresentation.Pages.VolunteerCoordinator"
+        mc:Ignorable="d"
+        Title="pgViewVolunteerQuestionnaire" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblTitle" Grid.Row="0" Style="{StaticResource lblSubHeader}" Grid.ColumnSpan="2" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Volunteer Questionnaire</Label>
+        <TextBlock x:Name="txtVolunteerID" Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center">Volunteer ID</TextBlock>
+        <Label x:Name="lblSkillsQuestion" Style="{StaticResource lblSubHeader}" Grid.Row="2" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            What are your Skills?
+        </Label>
+        <TextBlock x:Name="txtSkills" Grid.Row="2" Grid.Column="1" Margin="10">
+            List Skills here...
+        </TextBlock>
+        <Label x:Name="lblVehiclesQuestion" Style="{StaticResource lblSubHeader}" Grid.Row="3" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            What Vehicles can you operate?
+        </Label>
+        <TextBlock x:Name="txtVehicles" Grid.Row="3" Grid.Column="1" Margin="10">
+            List Skills here...
+        </TextBlock>
+        <Label x:Name="lblPriorExperience" Style="{StaticResource lblSubHeader}" Grid.Row="4" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Have you ever worked with the homeless before?
+        </Label>
+        <TextBlock x:Name="txtExperienceYes1" Grid.Row="4"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Yes</TextBlock>
+        <Label x:Name="lblStudentStatus" Style="{StaticResource lblSubHeader}" Grid.Row="5" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Are you a student?
+        </Label>
+        <TextBlock x:Name="txtStudentYes1" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Yes</TextBlock>
+        <Label x:Name="lblSchoolName" Style="{StaticResource lblSubHeader}" Grid.Row="6" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            If so, what school?
+        </Label>
+        <TextBlock x:Name="txtSchoolNames" Grid.Row="6" Grid.Column="1" Margin="10">
+            List School Name here...
+        </TextBlock>
+        <Label x:Name="lblGroupExperience" Style="{StaticResource lblSubHeader}" Grid.Row="7" Grid.Column="0" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Do you work well in groups?
+        </Label>
+        <TextBlock x:Name="txtGroupYes1" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Yes</TextBlock>
+        <Button x:Name="btnExit" Style="{StaticResource btnMedium}" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalContentAlignment="Center" Click="btnExit_Click" >
+            Exit
+        </Button>
+    </Grid>
+</Window>

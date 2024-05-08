@@ -1,0 +1,145 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/15/2024
+    Summary: Creation of the index actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/15/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/12/2024
+    What Was Changed: initial creation
+    Last Updated By: Liam Easton
+    Last Updated: 4/19/2024
+    What Was Changed: changed the add button and the table style
+*@
+@model IEnumerable<DataObjects.Visit>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Hero = "All Visits";
+}
+
+@*delete modal*@
+<div class="modal text-light" id="delete-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="text-white modal-title delete-message" id="modal-title"></h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Delete", "Visitations", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="delete-visit-id" name="id" value="" />
+
+                    <div class="form-actions">
+                        <input id="confirm-delete-button" type="submit" value="Delete" class="btn btn-danger" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Reschedule modal*@
+<div class="modal text-light" id="reschedule-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="text-white modal-title reschedule-message" id="modal-title"></h5>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Reschedule", "Visitations", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="reschedule-visit-id" name="id" value="" />
+
+                    <div class="form-actions">
+                        <input id="confirm-reschedule-button" type="submit" value="Reschedule" class="btn btn-secondary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn-generic" href="@Url.Action("Create", "Visitations")">
+    Create Visitation
+</a>
+
+@if (Model.Count() > 0)
+{
+    <table class="table my-4">
+        <tr class="bg-dark text-white">
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitReason)
+            </th>
+            <th>Options</th>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.CheckIn.ToString("MM/dd/yyyy hh:mm tt")
+            </td>
+            <td>
+                @item.CheckOut.ToString("MM/dd/yyyy hh:mm tt")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VisitReason)
+            </td>
+            <td>
+                <a class="text-decoration-none text-dark" href="@Url.Action("Details", "Visitations", new {  id = item.VisitID })">
+                    Details
+                </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="text-decoration-none text-dark px-3" href="@Url.Action("Edit", "Visitations", new {  id = item.VisitID })">
+                        Edit
+                    </a>
+                    <a>
+                        <button class="reschedule-button fw-bold bg-transparent border-0"
+                                data-bs-toggle="modal"
+                                data-bs-target="#reschedule-modal"
+                                data-visit-id="@item.VisitID"
+                                data-visit-name="@item.VisitID">
+                            Reschedule
+                        </button>
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+    </table>
+}
+else
+{
+    <h1 class="mt-4">No visits.</h1>
+}
+
+<script>
+    var deleteButtons = document.querySelectorAll('.reschedule-button');
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var deleteMessage = document.querySelector('.reschedule-message');
+            var visitName = button.getAttribute('data-visit-name');
+            var visitID = document.getElementById('reschedule-visit-id');
+            visitID.value = button.getAttribute('data-visit-id');
+            deleteMessage.textContent = "Are you sure you want to reschedule this visit?";
+        });
+    });
+</script>

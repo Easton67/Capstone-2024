@@ -1,0 +1,86 @@
+﻿@model DataObjects.CreateVolunteerApplication
+
+@{
+    ViewBag.Title = "VolunteerApplication";
+    ViewBag.Hero = "Volunteer Application";
+}
+
+<p class="text-center"> We'd love to have you join us!<br /> Please fill out this application below, and we will get back to you as soon as possible.</p>
+
+@using (Html.BeginForm("VolunteerApplication", "Applications", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+{<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="d-flex flex-column pt-5 text-dark align-items-center">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "One or more fields are incorrect.", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <br />
+            @Html.LabelFor(m => m.GivenName, new { @class = "text-start" })
+            <br />
+            @Html.TextBoxFor(m => m.GivenName, new { @class = " text-center", placeholder = "First Name" })
+            <br />
+            @Html.ValidationMessageFor(m => m.GivenName, "Cannot be blank", new { @class = "text-danger mb-4 fw-bold" })
+        </div>
+        <div class="col-md-6 text-center">
+            <br />
+            @Html.LabelFor(m => m.FamilyName, new { @class = "text-start" })
+            <br />
+            @Html.TextBoxFor(m => m.FamilyName, new { @class = " text-center", placeholder = "Last Name" })
+            <br />
+            @Html.ValidationMessageFor(m => m.FamilyName, "Cannot be blank", new { @class = "text-danger mb-4 fw-bold" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-md-6 text-center">
+            <br />
+            @Html.LabelFor(m => m.Email, new { @class = "text-start" })
+            <br />
+            @Html.TextBoxFor(m => m.Email, new { @class = "text-center", placeholder = "Email" })
+            <br />
+            @Html.ValidationMessageFor(m => m.Email, "Not a valid email", new { @class = "text-danger fw-bold fw-700" })
+        </div>
+        <div class="mb-3 col-md-6 text-center">
+            <br />
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "text-start" })
+            <br />
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = " text-center", placeholder = "Phone Number" })
+            <br />
+            @Html.ValidationMessageFor(m => m.PhoneNumber, "Not a valid phone number", new { @class = "text-danger fw-bold fw-700" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-md-6 text-center">
+            <br />
+            @Html.LabelFor(m => m.HoursDesired, new { @class = "text-start" })
+            <br />
+            @Html.TextBoxFor(m => m.HoursDesired, new { @class = "text-center", placeholder = "Ex. 25" })
+            <br />
+            @Html.ValidationMessageFor(m => m.HoursDesired, "Must be a number between 1-40", new { @class = "text-danger fw-bold fw-700" })
+        </div>
+    </div>
+
+    <div class="d-flex flex-column pt-5 text-dark align-items-center">
+        <div class="row">
+            <div class="mb-3 col-md-6 text-center">
+                @Html.LabelFor(m => m.ApplicationReason, new { @class = "text-start" })
+                <br />
+                @Html.TextAreaFor(m => m.ApplicationReason, new { @class = "text-center", placeholder = "Reason For Applying" })
+                <br />
+                @Html.ValidationMessageFor(m => m.ApplicationReason, "Cannot be blank", new { @class = "text-danger fw-bold fw-700" })
+            </div>
+            <div class="mb-3 col-md-6 text-center">
+                @Html.LabelFor(m => m.VolunteerConcerns, new { @class = "text-start" })
+                <br />
+                @Html.TextAreaFor(m => m.VolunteerConcerns, new { @class = "text-center", placeholder = "Concerns" })
+                <br />
+                @Html.ValidationMessageFor(m => m.VolunteerConcerns, "Cannot be blank", new { @class = "text-danger fw-bold fw-700" })
+            </div>
+        </div>
+    </div>
+    <br />
+    <button class="btn-generic" type="submit" style="width:15%; align-self:center; text-decoration: none">
+        Apply
+    </button>
+</div>
+}

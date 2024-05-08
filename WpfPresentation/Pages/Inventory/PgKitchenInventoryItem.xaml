@@ -1,0 +1,26 @@
+﻿
+    <!--Last Updated By: Ethan McElree
+    Last Updated: 04/15/2024
+    What Was Changed: Added row definitions, a label for the title, and a combobox to filter the list by category.-->
+<Page x:Class="WpfPresentation.Pages.Inventory.PgKitchenInventoryItem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfPresentation.Pages.Inventory"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PgKitchenInventoryItem" Loaded="Page_Loaded">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label x:Name="lblKitchenInventory" Content="Kitchen Inventory" HorizontalAlignment="Center" FontSize="25"/>
+        <Label Grid.Row="1" x:Name="lblFilterKitchenInventory" Content="Filter Kitchen Inventory" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="13" Margin="0 0 200 0"/>
+        <ComboBox Grid.Row="1" x:Name="cboKitchenInventory" Width="150" Height="30" HorizontalAlignment="Right" Margin="0 0 50 0" SelectionChanged="cboKitchenInventory_SelectionChanged"/>
+        <DataGrid x:Name="dgKitchenInventoryItemtList" Grid.Row="2" Height="300" IsReadOnly="True" Style="{StaticResource dgDataGridTheme}">
+        </DataGrid>
+    </Grid>
+</Page>

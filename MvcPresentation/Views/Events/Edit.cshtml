@@ -1,0 +1,58 @@
+﻿@*
+    Creator: Liam Easton
+    Created: 3/20/2024
+    Summary: Creation of the edit actionlink
+    Last Updated By: Liam Easton
+    Last Updated: 3/20/2024
+    What Was Changed: initial creation
+*@
+@model DataObjects.Event
+
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.Hero = "Edit Event";
+}
+
+
+<div class="w-50 mx-auto">
+    <div class="w-50 m-auto">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.EventID)
+
+            <div class="m-1">
+                Event Name:
+                <div class="">
+                    @Html.EditorFor(model => model.EventName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="m-1">
+                Description:
+                <div class="">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="m-1">
+                Volunteers Needed:
+                <div class="">
+                    @Html.EditorFor(model => model.VolunteersNeeded, new { htmlAttributes = new { @class = "form-control", type = "number", min = 0 } })
+                    @Html.ValidationMessageFor(model => model.VolunteersNeeded, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mx-auto">
+                <input type="submit" value="Save" class="btn-generic" />
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

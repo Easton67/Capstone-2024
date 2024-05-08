@@ -1,0 +1,283 @@
+﻿﻿ /*
+Creator: Liam Easton
+Created: 3/09/2024
+Summary: Creation of additional stylesheet to override and add on to bootstrap files
+Last Updated By: Liam Easton
+Last Updated: 3/10/2024
+What Was Changed: created login styles and background for webpage
+Last Updated By: Matthew Baccam
+Last Updated: 4/12/2024
+What Was Changed: Created the theme for the body and also text colors on "p"
+Last Updated By: Matthew Baccam
+Last Updated: 4/25/2024
+What Was Changed: Fixed the logo styling so it had a better appearance on smaller views
+*/
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /*    https: //css-pattern.com/ */
+    /*    --s: 800px;
+    --c1: #1d1d1d;
+    --c2: #4e4f51;
+    --c3: #3c3c3c;
+    background: repeating-conic-gradient(from 30deg,#0000 0 120deg,var(--c3) 0 180deg) calc(.5*var(--s)) calc(.5*var(--s)*0.577), repeating-conic-gradient(from 30deg,var(--c1) 0 60deg,var(--c2) 0 120deg,var(--c3) 0 180deg);
+    background-size: var(--s) calc(var(--s)*0.577);
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    min-height: 95vh;*/
+    background-color: #EEECEC;
+    color: black;
+}
+
+.default-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    background: #CFCECD;
+    padding: 5rem;
+    font-size: 25px;
+    border-radius: 30px;
+    min-height: 100vh;
+}
+
+p {
+    color: #3E3D3D;
+}
+
+nav {
+    background-color: #D0CECD;
+}
+
+/*.box {*/
+/* https: //css-generators.com/wavy-shapes/ */
+/*--mask: radial-gradient(67.08px at 90px 50%,#000 99%,#0000 101%) 0 calc(50% - 60px)/100% 120px, radial-gradient(67.08px at -60px 50%,#0000 99%,#000 101%) 30px 50%/100% 120px repeat-y;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+}*/
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 400px;
+}
+
+.bg-radial-gradient {
+    /*    background: rgb(144,145,147);
+    background: linear-gradient(0deg, rgba(144,145,147,1) 0%, rgba(205,205,205,0.55) 47%, rgba(144,145,147,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;*/
+}
+
+main {
+    height: 100vh;
+    margin-top: 0px;
+}
+
+.login-container {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+
+.icon {
+    height: 70px;
+    width: 70px;
+}
+
+    .icon:hover {
+        cursor: pointer;
+    }
+
+.hr-underline {
+    border: 1px solid;
+    border-width: 3px 0;
+    color: black;
+}
+
+#searchBox {
+    border-radius: 70px;
+}
+
+.br-30 {
+    border-radius: 30px
+}
+
+.register-container {
+    margin-right: -48px !important;
+    margin-left: -48px !important;
+}
+
+#sign-in-container {
+    margin-right: -48px !important;
+    margin-left: -48px !important;
+}
+
+.hr-login {
+    width: 500px;
+    margin: auto;
+    color: white;
+}
+
+.login-footer-links {
+    color: white;
+    text-decoration: none;
+}
+
+    .login-footer-links:hover {
+        color: white;
+    }
+
+.form-inputs {
+    display: inline-block;
+}
+
+footer {
+    text-align: center;
+    padding-left: 40%;
+    padding-right: 40%;
+    white-space: nowrap;
+}
+
+.login-background {
+    /* https://hype4.academy/tools/glassmorphism-generator */
+
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 1);
+    backdrop-filter: blur( 6px );
+    border-radius: 10px;
+}
+
+.form-inputs,
+.form-check-label,
+.login-button,
+.login-footer-links {
+    font-size: 30px; /* You can adjust the size as needed */
+}
+
+
+h1, h2, h3, h4, h5 {
+    color: black;
+}
+
+li {
+    color: black;
+}
+/* Tables */
+
+.table-header-filter {
+    height: 70px;
+}
+
+.search-icon {
+    margin-top: -5px;
+}
+
+.btn-grey {
+    background: #CFCECD;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border: 3px solid black;
+}
+
+    .btn-grey:hover {
+        background: #CFCECD;
+        color: black;
+        box-shadow: 1px 4px;
+    }
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.logo {
+    z-index: 1;
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 15%;
+}
+
+.fc .fc-col-header-cell-cushion {
+    color: white;
+    text-decoration: none;
+}
+
+.fc-daygrid-day-number {
+    color: black;
+}
+
+.fc-day {
+    color: black;
+}
+
+.btn-generic {
+    margin: 5px 0;
+    background: #CFCECD;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border: 3px solid black;
+    border-radius: 30px;
+    padding: 10px;
+    transition: all .2s ease-in-out;
+    min-width: 100px;
+}
+
+    .btn-generic:hover {
+        color: black;
+        box-shadow: 1px 4px;
+    }
+
+
+.dropdown-menu-item {
+    background: #CFCECD;
+    border: none;
+    font-weight: 600;
+}
+
+    .dropdown-menu-item li:hover {
+        background-color: lightgray;
+    }
+
+tr {
+    background: #CFCECD !important;
+    color: black;
+}
+
+table tr th {
+    color: white;
+    color: #fff !important;
+    background-color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1)) !important;
+}
+
+td a {
+    text-decoration: none;
+    padding: 0 5px;
+    color: RGBA(33, 37, 41, var(--bs-bg-opacity, 1));
+}
+
+.table {
+    font-weight: 500 !important;
+}
